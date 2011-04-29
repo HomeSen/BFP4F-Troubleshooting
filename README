@@ -1,0 +1,29 @@
+A small utility to check for the most common sources of errors in Battlefield Play4Free.
+
+
+The tool checks the following (so far):
+
+1. Prerequisites (libraries that are needed by the game's engine):
+   - Microsoft .NET Framework 3.5 SP1
+   - Microsoft .NET Framework 4.0
+   - Microsoft Visual C++ Runtime 2005 SP1
+   - Microsoft Visual C++ Runtime 2008 SP1
+   - Microsoft DirectX Runtime 9.0c
+
+2. Hardware Requirements:
+   - DirectX 9.0c compliant video card with PixelShader 2.0 support (in hardware)
+   - video memory of at least 256MB
+   - at least 512MB of RAM (1GB for Vista/Win7)
+   - CPU with at least 1.7GHz
+
+3. Network problems:
+   - problematic entries inside the local hosts file
+   - connections to all needed sockets (IP/FQDN + port)
+
+
+Additionally it provides some "convenience shortcuts":
+
+1. Links to the prerequisites' download pages
+2. Links to the according driver pages
+3. A link to the screenshots folder
+4. A "quick clear shader cache" shortcut
