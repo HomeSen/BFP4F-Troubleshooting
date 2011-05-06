@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.TabControl tabControl1;
+            System.Windows.Forms.Label label12;
+            System.Windows.Forms.Label label11;
+            System.Windows.Forms.Label label10;
+            System.Windows.Forms.Label label9;
+            System.Windows.Forms.Label label8;
             System.Windows.Forms.Label label7;
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label5;
@@ -37,12 +42,22 @@
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-            System.Windows.Forms.Label label8;
-            System.Windows.Forms.Label label9;
-            System.Windows.Forms.Label label10;
-            System.Windows.Forms.Label label11;
-            System.Windows.Forms.Label label12;
+            System.Windows.Forms.Label label13;
+            System.Windows.Forms.Label label14;
             this.tabPrereq = new System.Windows.Forms.TabPage();
+            this.picVC2008 = new System.Windows.Forms.PictureBox();
+            this.picVC2005 = new System.Windows.Forms.PictureBox();
+            this.picNet40 = new System.Windows.Forms.PictureBox();
+            this.picNet35 = new System.Windows.Forms.PictureBox();
+            this.linkLabel7 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.lblNetFx35sp1 = new System.Windows.Forms.Label();
+            this.lblVC2008sp1 = new System.Windows.Forms.Label();
+            this.lblVC2005sp1 = new System.Windows.Forms.Label();
+            this.lblNetFx40 = new System.Windows.Forms.Label();
             this.tabConnection = new System.Windows.Forms.TabPage();
             this.tabHardware = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -62,20 +77,15 @@
             this.statusSuccess = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusWarning = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusError = new System.Windows.Forms.ToolStripStatusLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel7 = new System.Windows.Forms.LinkLabel();
-            this.picNet35 = new System.Windows.Forms.PictureBox();
-            this.picNet40 = new System.Windows.Forms.PictureBox();
-            this.picVC2005 = new System.Windows.Forms.PictureBox();
-            this.picVC2008 = new System.Windows.Forms.PictureBox();
-            this.lblNetFx35sp1 = new System.Windows.Forms.Label();
-            this.lblNetFx40 = new System.Windows.Forms.Label();
-            this.lblVC2005sp1 = new System.Windows.Forms.Label();
-            this.lblVC2008sp1 = new System.Windows.Forms.Label();
+            this.picHosts = new System.Windows.Forms.PictureBox();
+            this.linkHosts = new System.Windows.Forms.LinkLabel();
+            this.lblHosts = new System.Windows.Forms.Label();
             tabControl1 = new System.Windows.Forms.TabControl();
+            label12 = new System.Windows.Forms.Label();
+            label11 = new System.Windows.Forms.Label();
+            label10 = new System.Windows.Forms.Label();
+            label9 = new System.Windows.Forms.Label();
+            label8 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
@@ -84,22 +94,21 @@
             toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            label8 = new System.Windows.Forms.Label();
-            label9 = new System.Windows.Forms.Label();
-            label10 = new System.Windows.Forms.Label();
-            label11 = new System.Windows.Forms.Label();
-            label12 = new System.Windows.Forms.Label();
+            label13 = new System.Windows.Forms.Label();
+            label14 = new System.Windows.Forms.Label();
             tabControl1.SuspendLayout();
             this.tabPrereq.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picVC2008)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVC2005)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNet40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNet35)).BeginInit();
+            this.tabConnection.SuspendLayout();
             this.tabHardware.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPixelShader)).BeginInit();
             this.tabCredits.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNet35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picNet40)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picVC2005)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picVC2008)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHosts)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -146,8 +155,194 @@
             this.tabPrereq.Text = "Prerequisites";
             this.tabPrereq.UseVisualStyleBackColor = true;
             // 
+            // picVC2008
+            // 
+            this.picVC2008.Location = new System.Drawing.Point(15, 205);
+            this.picVC2008.Name = "picVC2008";
+            this.picVC2008.Size = new System.Drawing.Size(32, 32);
+            this.picVC2008.TabIndex = 13;
+            this.picVC2008.TabStop = false;
+            // 
+            // picVC2005
+            // 
+            this.picVC2005.Location = new System.Drawing.Point(15, 142);
+            this.picVC2005.Name = "picVC2005";
+            this.picVC2005.Size = new System.Drawing.Size(32, 32);
+            this.picVC2005.TabIndex = 12;
+            this.picVC2005.TabStop = false;
+            // 
+            // picNet40
+            // 
+            this.picNet40.Location = new System.Drawing.Point(15, 80);
+            this.picNet40.Name = "picNet40";
+            this.picNet40.Size = new System.Drawing.Size(32, 32);
+            this.picNet40.TabIndex = 11;
+            this.picNet40.TabStop = false;
+            // 
+            // picNet35
+            // 
+            this.picNet35.Location = new System.Drawing.Point(15, 29);
+            this.picNet35.Name = "picNet35";
+            this.picNet35.Size = new System.Drawing.Size(32, 32);
+            this.picNet35.TabIndex = 10;
+            this.picNet35.TabStop = false;
+            // 
+            // linkLabel7
+            // 
+            this.linkLabel7.AutoSize = true;
+            this.linkLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel7.Location = new System.Drawing.Point(54, 292);
+            this.linkLabel7.Name = "linkLabel7";
+            this.linkLabel7.Size = new System.Drawing.Size(163, 17);
+            this.linkLabel7.TabIndex = 9;
+            this.linkLabel7.TabStop = true;
+            this.linkLabel7.Text = "Download from Microsoft";
+            this.linkLabel7.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel7_LinkClicked);
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new System.Drawing.Point(53, 272);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(295, 20);
+            label12.TabIndex = 8;
+            label12.Text = "DirectX End-User Runtime Web Installer";
+            // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel6.Location = new System.Drawing.Point(54, 225);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(163, 17);
+            this.linkLabel6.TabIndex = 7;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "Download from Microsoft";
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new System.Drawing.Point(53, 205);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(414, 20);
+            label11.TabIndex = 6;
+            label11.Text = "Microsoft Visual C++ 2008 Redistributable Package (x86) ";
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel5.Location = new System.Drawing.Point(54, 162);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(163, 17);
+            this.linkLabel5.TabIndex = 5;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "Download from Microsoft";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new System.Drawing.Point(53, 142);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(444, 20);
+            label10.TabIndex = 4;
+            label10.Text = "Microsoft Visual C++ 2005 SP1 Redistributable Package (x86)";
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel4.Location = new System.Drawing.Point(54, 100);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(163, 17);
+            this.linkLabel4.TabIndex = 3;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "Download from Microsoft";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new System.Drawing.Point(53, 80);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(209, 20);
+            label9.TabIndex = 2;
+            label9.Text = "Microsoft .NET Framework 4";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel3.Location = new System.Drawing.Point(54, 49);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(163, 17);
+            this.linkLabel3.TabIndex = 1;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "Download from Microsoft";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new System.Drawing.Point(53, 29);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(256, 20);
+            label8.TabIndex = 0;
+            label8.Text = "Microsoft .NET Framework 3.5 SP1";
+            // 
+            // lblNetFx35sp1
+            // 
+            this.lblNetFx35sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNetFx35sp1.Location = new System.Drawing.Point(6, 62);
+            this.lblNetFx35sp1.Name = "lblNetFx35sp1";
+            this.lblNetFx35sp1.Size = new System.Drawing.Size(52, 10);
+            this.lblNetFx35sp1.TabIndex = 14;
+            this.lblNetFx35sp1.Text = "SP1 missing";
+            this.lblNetFx35sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblNetFx35sp1.Visible = false;
+            // 
+            // lblVC2008sp1
+            // 
+            this.lblVC2008sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVC2008sp1.Location = new System.Drawing.Point(6, 238);
+            this.lblVC2008sp1.Name = "lblVC2008sp1";
+            this.lblVC2008sp1.Size = new System.Drawing.Size(52, 10);
+            this.lblVC2008sp1.TabIndex = 17;
+            this.lblVC2008sp1.Text = "SP1 missing";
+            this.lblVC2008sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblVC2008sp1.Visible = false;
+            // 
+            // lblVC2005sp1
+            // 
+            this.lblVC2005sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVC2005sp1.Location = new System.Drawing.Point(6, 175);
+            this.lblVC2005sp1.Name = "lblVC2005sp1";
+            this.lblVC2005sp1.Size = new System.Drawing.Size(52, 10);
+            this.lblVC2005sp1.TabIndex = 16;
+            this.lblVC2005sp1.Text = "SP1 missing";
+            this.lblVC2005sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblVC2005sp1.Visible = false;
+            // 
+            // lblNetFx40
+            // 
+            this.lblNetFx40.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNetFx40.Location = new System.Drawing.Point(6, 113);
+            this.lblNetFx40.Name = "lblNetFx40";
+            this.lblNetFx40.Size = new System.Drawing.Size(52, 10);
+            this.lblNetFx40.TabIndex = 15;
+            this.lblNetFx40.Text = "missing";
+            this.lblNetFx40.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblNetFx40.Visible = false;
+            // 
             // tabConnection
             // 
+            this.tabConnection.Controls.Add(label14);
+            this.tabConnection.Controls.Add(this.lblHosts);
+            this.tabConnection.Controls.Add(this.linkHosts);
+            this.tabConnection.Controls.Add(label13);
+            this.tabConnection.Controls.Add(this.picHosts);
             this.tabConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabConnection.Location = new System.Drawing.Point(4, 22);
             this.tabConnection.Name = "tabConnection";
@@ -192,7 +387,6 @@
             // 
             // picPixelShader
             // 
-            this.picPixelShader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picPixelShader.InitialImage = null;
             this.picPixelShader.Location = new System.Drawing.Point(256, 118);
             this.picPixelShader.Name = "picPixelShader";
@@ -346,7 +540,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(3, 58);
+            this.linkLabel1.Location = new System.Drawing.Point(6, 58);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(294, 17);
             this.linkLabel1.TabIndex = 1;
@@ -433,186 +627,58 @@
             this.statusError.Text = "0";
             this.statusError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label8
+            // picHosts
             // 
-            label8.AutoSize = true;
-            label8.Location = new System.Drawing.Point(53, 29);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(256, 20);
-            label8.TabIndex = 0;
-            label8.Text = "Microsoft .NET Framework 3.5 SP1";
+            this.picHosts.Location = new System.Drawing.Point(15, 29);
+            this.picHosts.Name = "picHosts";
+            this.picHosts.Size = new System.Drawing.Size(32, 32);
+            this.picHosts.TabIndex = 0;
+            this.picHosts.TabStop = false;
             // 
-            // linkLabel3
+            // label13
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel3.Location = new System.Drawing.Point(54, 49);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(163, 17);
-            this.linkLabel3.TabIndex = 1;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Download from Microsoft";
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            label13.AutoSize = true;
+            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label13.Location = new System.Drawing.Point(53, 29);
+            label13.Name = "label13";
+            label13.Size = new System.Drawing.Size(88, 20);
+            label13.TabIndex = 1;
+            label13.Text = "\"hosts\" file:";
             // 
-            // label9
+            // linkHosts
             // 
-            label9.AutoSize = true;
-            label9.Location = new System.Drawing.Point(53, 80);
-            label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(209, 20);
-            label9.TabIndex = 2;
-            label9.Text = "Microsoft .NET Framework 4";
+            this.linkHosts.AutoSize = true;
+            this.linkHosts.Location = new System.Drawing.Point(54, 49);
+            this.linkHosts.Name = "linkHosts";
+            this.linkHosts.Size = new System.Drawing.Size(176, 17);
+            this.linkHosts.TabIndex = 2;
+            this.linkHosts.TabStop = true;
+            this.linkHosts.Text = "Open hosts file in Notepad";
+            this.linkHosts.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel8_LinkClicked);
             // 
-            // linkLabel4
+            // lblHosts
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel4.Location = new System.Drawing.Point(54, 100);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(163, 17);
-            this.linkLabel4.TabIndex = 3;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Download from Microsoft";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            this.lblHosts.AutoSize = true;
+            this.lblHosts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblHosts.Location = new System.Drawing.Point(147, 32);
+            this.lblHosts.Name = "lblHosts";
+            this.lblHosts.Size = new System.Drawing.Size(173, 17);
+            this.lblHosts.TabIndex = 3;
+            this.lblHosts.Text = "5 suspicious entries found";
+            this.lblHosts.Visible = false;
             // 
-            // label10
+            // label14
             // 
-            label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(53, 142);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(444, 20);
-            label10.TabIndex = 4;
-            label10.Text = "Microsoft Visual C++ 2005 SP1 Redistributable Package (x86)";
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel5.Location = new System.Drawing.Point(54, 162);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(163, 17);
-            this.linkLabel5.TabIndex = 5;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "Download from Microsoft";
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new System.Drawing.Point(53, 205);
-            label11.Name = "label11";
-            label11.Size = new System.Drawing.Size(414, 20);
-            label11.TabIndex = 6;
-            label11.Text = "Microsoft Visual C++ 2008 Redistributable Package (x86) ";
-            // 
-            // linkLabel6
-            // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel6.Location = new System.Drawing.Point(54, 225);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(163, 17);
-            this.linkLabel6.TabIndex = 7;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "Download from Microsoft";
-            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new System.Drawing.Point(53, 272);
-            label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(295, 20);
-            label12.TabIndex = 8;
-            label12.Text = "DirectX End-User Runtime Web Installer";
-            // 
-            // linkLabel7
-            // 
-            this.linkLabel7.AutoSize = true;
-            this.linkLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel7.Location = new System.Drawing.Point(54, 292);
-            this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(163, 17);
-            this.linkLabel7.TabIndex = 9;
-            this.linkLabel7.TabStop = true;
-            this.linkLabel7.Text = "Download from Microsoft";
-            this.linkLabel7.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel7_LinkClicked);
-            // 
-            // picNet35
-            // 
-            this.picNet35.Location = new System.Drawing.Point(15, 29);
-            this.picNet35.Name = "picNet35";
-            this.picNet35.Size = new System.Drawing.Size(32, 32);
-            this.picNet35.TabIndex = 10;
-            this.picNet35.TabStop = false;
-            // 
-            // picNet40
-            // 
-            this.picNet40.Location = new System.Drawing.Point(15, 80);
-            this.picNet40.Name = "picNet40";
-            this.picNet40.Size = new System.Drawing.Size(32, 32);
-            this.picNet40.TabIndex = 11;
-            this.picNet40.TabStop = false;
-            // 
-            // picVC2005
-            // 
-            this.picVC2005.Location = new System.Drawing.Point(15, 142);
-            this.picVC2005.Name = "picVC2005";
-            this.picVC2005.Size = new System.Drawing.Size(32, 32);
-            this.picVC2005.TabIndex = 12;
-            this.picVC2005.TabStop = false;
-            // 
-            // picVC2008
-            // 
-            this.picVC2008.Location = new System.Drawing.Point(15, 205);
-            this.picVC2008.Name = "picVC2008";
-            this.picVC2008.Size = new System.Drawing.Size(32, 32);
-            this.picVC2008.TabIndex = 13;
-            this.picVC2008.TabStop = false;
-            // 
-            // lblNetFx35sp1
-            // 
-            this.lblNetFx35sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNetFx35sp1.Location = new System.Drawing.Point(6, 62);
-            this.lblNetFx35sp1.Name = "lblNetFx35sp1";
-            this.lblNetFx35sp1.Size = new System.Drawing.Size(52, 10);
-            this.lblNetFx35sp1.TabIndex = 14;
-            this.lblNetFx35sp1.Text = "SP1 missing";
-            this.lblNetFx35sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblNetFx35sp1.Visible = false;
-            // 
-            // lblNetFx40
-            // 
-            this.lblNetFx40.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNetFx40.Location = new System.Drawing.Point(6, 113);
-            this.lblNetFx40.Name = "lblNetFx40";
-            this.lblNetFx40.Size = new System.Drawing.Size(52, 10);
-            this.lblNetFx40.TabIndex = 15;
-            this.lblNetFx40.Text = "missing";
-            this.lblNetFx40.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblNetFx40.Visible = false;
-            // 
-            // lblVC2005sp1
-            // 
-            this.lblVC2005sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVC2005sp1.Location = new System.Drawing.Point(6, 175);
-            this.lblVC2005sp1.Name = "lblVC2005sp1";
-            this.lblVC2005sp1.Size = new System.Drawing.Size(52, 10);
-            this.lblVC2005sp1.TabIndex = 16;
-            this.lblVC2005sp1.Text = "SP1 missing";
-            this.lblVC2005sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblVC2005sp1.Visible = false;
-            // 
-            // lblVC2008sp1
-            // 
-            this.lblVC2008sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVC2008sp1.Location = new System.Drawing.Point(6, 238);
-            this.lblVC2008sp1.Name = "lblVC2008sp1";
-            this.lblVC2008sp1.Size = new System.Drawing.Size(52, 10);
-            this.lblVC2008sp1.TabIndex = 17;
-            this.lblVC2008sp1.Text = "SP1 missing";
-            this.lblVC2008sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblVC2008sp1.Visible = false;
+            label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label14.ForeColor = System.Drawing.Color.Blue;
+            label14.Location = new System.Drawing.Point(15, 135);
+            label14.Name = "label14";
+            label14.Size = new System.Drawing.Size(524, 211);
+            label14.TabIndex = 4;
+            label14.Text = "More \"Awesome\" will be coming soon™\r\n\r\nA list of all IPs/FQDNs and Ports (includi" +
+                "ng protocol) would be nice, so I can check whether it\'s possible to connect to t" +
+                "hem ;-)";
+            label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -622,11 +688,18 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(tabControl1);
+            this.MinimumSize = new System.Drawing.Size(602, 521);
             this.Name = "MainForm";
             this.Text = "BF:P4F Troubleshooting";
             tabControl1.ResumeLayout(false);
             this.tabPrereq.ResumeLayout(false);
             this.tabPrereq.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picVC2008)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVC2005)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNet40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNet35)).EndInit();
+            this.tabConnection.ResumeLayout(false);
+            this.tabConnection.PerformLayout();
             this.tabHardware.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -635,10 +708,7 @@
             this.tabCredits.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picNet35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picNet40)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picVC2005)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picVC2008)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHosts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -679,6 +749,9 @@
         internal System.Windows.Forms.Label lblVC2008sp1;
         internal System.Windows.Forms.Label lblVC2005sp1;
         internal System.Windows.Forms.Label lblNetFx40;
+        internal System.Windows.Forms.PictureBox picHosts;
+        internal System.Windows.Forms.Label lblHosts;
+        internal System.Windows.Forms.LinkLabel linkHosts;
     }
 }
 

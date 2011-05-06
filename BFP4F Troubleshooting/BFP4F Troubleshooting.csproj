@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileSystemHelper.cs" />
     <Compile Include="HardwareHelper.cs" />
     <Compile Include="MainFormController.cs" />
     <Compile Include="RegistryHelper.cs" />

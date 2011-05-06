@@ -85,7 +85,8 @@ namespace BFP4F_Troubleshooting
             {
                 result = false;
                 System.Windows.Forms.MessageBox.Show(
-                    "An error occured while checking if the .NET Framework " + version.ToString() + " is installed",
+                    "An error occured while checking if the .NET Framework " + version.ToString() + " is installed"
+                        + Environment.NewLine + Environment.NewLine + ex.ToString(),
                     "Error", 
                     System.Windows.Forms.MessageBoxButtons.OK, 
                     System.Windows.Forms.MessageBoxIcon.Error);
@@ -144,7 +145,8 @@ namespace BFP4F_Troubleshooting
             {
                 result = false;
                 System.Windows.Forms.MessageBox.Show(
-                    "An error occured while checking if the Visual C++ Runtime " + version.ToString() + " is installed",
+                    "An error occured while checking if the Visual C++ Runtime " + version.ToString() + " is installed"
+                        + Environment.NewLine + Environment.NewLine + ex.ToString(),
                     "Error",
                     System.Windows.Forms.MessageBoxButtons.OK,
                     System.Windows.Forms.MessageBoxIcon.Error);

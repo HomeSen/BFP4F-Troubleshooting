@@ -58,8 +58,9 @@ namespace BFP4F_Troubleshooting
         public MainForm()
         {
             InitializeComponent();
+
             this._controller = new MainFormController(this);
-            this._controller.GetVideoDevice();
+            this.btnStart_Click(this, new EventArgs());
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -117,7 +118,12 @@ namespace BFP4F_Troubleshooting
         private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2da43d38-db71-4c1b-bc6a-9b6652cd92a3&displaylang=en");
-        } 
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FileSystemHelper.OpenHostsFile();
+        }
 
         #endregion
     }

@@ -63,6 +63,31 @@ namespace BFP4F_Troubleshooting
             NetFxTest();
             VCRTTest();
             DirectXTest();
+            ConnectionTest();
+        }
+
+        private void ConnectionTest()
+        {
+            int hosts = FileSystemHelper.CheckHostsFile();
+            if (hosts == 0)
+            {
+                this.mainForm.picHosts.Image = Properties.Resources.success;
+                this.mainForm.lblHosts.Visible = false;
+                this.mainForm.linkHosts.Enabled = true;
+            }
+            else if (hosts == -1)
+            {
+                this.mainForm.picHosts.Image = Properties.Resources.warning;
+                this.mainForm.lblHosts.Text = "Could not find hosts file";
+                this.mainForm.linkHosts.Enabled = false;
+            }
+            else
+            {
+                this.mainForm.picHosts.Image = Properties.Resources.warning;
+                this.mainForm.lblHosts.Text = hosts + " suspicious entries found";
+                this.mainForm.lblHosts.Visible = true;
+                this.mainForm.linkHosts.Enabled = true;
+            }
         }
 
         void DirectXTest()
