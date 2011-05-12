@@ -44,7 +44,9 @@
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabPrereq = new System.Windows.Forms.TabPage();
+            this.picDX = new System.Windows.Forms.PictureBox();
             this.picVC2008 = new System.Windows.Forms.PictureBox();
             this.picVC2005 = new System.Windows.Forms.PictureBox();
             this.picNet40 = new System.Windows.Forms.PictureBox();
@@ -80,7 +82,6 @@
             this.statusSuccess = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusWarning = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusError = new System.Windows.Forms.ToolStripStatusLabel();
-            this.picDX = new System.Windows.Forms.PictureBox();
             tabControl1 = new System.Windows.Forms.TabControl();
             label12 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -99,6 +100,7 @@
             toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             tabControl1.SuspendLayout();
             this.tabPrereq.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVC2008)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVC2005)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNet40)).BeginInit();
@@ -110,7 +112,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picPixelShader)).BeginInit();
             this.tabCredits.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picDX)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -157,6 +158,15 @@
             this.tabPrereq.TabIndex = 0;
             this.tabPrereq.Text = "Prerequisites";
             this.tabPrereq.UseVisualStyleBackColor = true;
+            // 
+            // picDX
+            // 
+            this.picDX.Location = new System.Drawing.Point(15, 272);
+            this.picDX.Name = "picDX";
+            this.picDX.Size = new System.Drawing.Size(32, 32);
+            this.picDX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picDX.TabIndex = 18;
+            this.picDX.TabStop = false;
             // 
             // picVC2008
             // 
@@ -689,15 +699,6 @@
             this.statusError.Text = "0";
             this.statusError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // picDX
-            // 
-            this.picDX.Location = new System.Drawing.Point(15, 272);
-            this.picDX.Name = "picDX";
-            this.picDX.Size = new System.Drawing.Size(32, 32);
-            this.picDX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picDX.TabIndex = 18;
-            this.picDX.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -706,12 +707,14 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(602, 521);
             this.Name = "MainForm";
             this.Text = "BF:P4F Troubleshooting";
             tabControl1.ResumeLayout(false);
             this.tabPrereq.ResumeLayout(false);
             this.tabPrereq.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picDX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVC2008)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picVC2005)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNet40)).EndInit();
@@ -727,7 +730,6 @@
             this.tabCredits.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picDX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
