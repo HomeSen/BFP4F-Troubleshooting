@@ -60,7 +60,7 @@ namespace BFP4F_Troubleshooting
             InitializeComponent();
 
             this._controller = new MainFormController(this);
-            this.btnStart_Click(this, new EventArgs());
+            //this.btnStart_Click(this, new EventArgs());
         }
 
         private void btnStart_Click(object sender, EventArgs e)

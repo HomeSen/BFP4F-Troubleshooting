@@ -23,6 +23,9 @@ namespace BFP4F_Troubleshooting
 
         public static void Initialize(Form form)
         {
+            if (initialized)
+                return;
+
             PresentParameters presentParams = new PresentParameters();
             presentParams.Windowed = true;
             presentParams.SwapEffect = SwapEffect.Discard;

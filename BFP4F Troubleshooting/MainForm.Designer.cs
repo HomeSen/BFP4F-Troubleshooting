@@ -34,6 +34,8 @@
             System.Windows.Forms.Label label10;
             System.Windows.Forms.Label label9;
             System.Windows.Forms.Label label8;
+            System.Windows.Forms.Label label14;
+            System.Windows.Forms.Label label13;
             System.Windows.Forms.Label label7;
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label5;
@@ -42,8 +44,6 @@
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-            System.Windows.Forms.Label label13;
-            System.Windows.Forms.Label label14;
             this.tabPrereq = new System.Windows.Forms.TabPage();
             this.picVC2008 = new System.Windows.Forms.PictureBox();
             this.picVC2005 = new System.Windows.Forms.PictureBox();
@@ -59,6 +59,9 @@
             this.lblVC2005sp1 = new System.Windows.Forms.Label();
             this.lblNetFx40 = new System.Windows.Forms.Label();
             this.tabConnection = new System.Windows.Forms.TabPage();
+            this.lblHosts = new System.Windows.Forms.Label();
+            this.linkHosts = new System.Windows.Forms.LinkLabel();
+            this.picHosts = new System.Windows.Forms.PictureBox();
             this.tabHardware = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.picPixelShader = new System.Windows.Forms.PictureBox();
@@ -77,15 +80,15 @@
             this.statusSuccess = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusWarning = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusError = new System.Windows.Forms.ToolStripStatusLabel();
-            this.picHosts = new System.Windows.Forms.PictureBox();
-            this.linkHosts = new System.Windows.Forms.LinkLabel();
-            this.lblHosts = new System.Windows.Forms.Label();
+            this.picDX = new System.Windows.Forms.PictureBox();
             tabControl1 = new System.Windows.Forms.TabControl();
             label12 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
             label10 = new System.Windows.Forms.Label();
             label9 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
+            label14 = new System.Windows.Forms.Label();
+            label13 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
@@ -94,8 +97,6 @@
             toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            label13 = new System.Windows.Forms.Label();
-            label14 = new System.Windows.Forms.Label();
             tabControl1.SuspendLayout();
             this.tabPrereq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picVC2008)).BeginInit();
@@ -103,12 +104,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.picNet40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNet35)).BeginInit();
             this.tabConnection.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picHosts)).BeginInit();
             this.tabHardware.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPixelShader)).BeginInit();
             this.tabCredits.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picHosts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDX)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -128,6 +130,7 @@
             // 
             // tabPrereq
             // 
+            this.tabPrereq.Controls.Add(this.picDX);
             this.tabPrereq.Controls.Add(this.picVC2008);
             this.tabPrereq.Controls.Add(this.picVC2005);
             this.tabPrereq.Controls.Add(this.picNet40);
@@ -160,6 +163,7 @@
             this.picVC2008.Location = new System.Drawing.Point(15, 205);
             this.picVC2008.Name = "picVC2008";
             this.picVC2008.Size = new System.Drawing.Size(32, 32);
+            this.picVC2008.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picVC2008.TabIndex = 13;
             this.picVC2008.TabStop = false;
             // 
@@ -168,6 +172,7 @@
             this.picVC2005.Location = new System.Drawing.Point(15, 142);
             this.picVC2005.Name = "picVC2005";
             this.picVC2005.Size = new System.Drawing.Size(32, 32);
+            this.picVC2005.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picVC2005.TabIndex = 12;
             this.picVC2005.TabStop = false;
             // 
@@ -176,6 +181,7 @@
             this.picNet40.Location = new System.Drawing.Point(15, 80);
             this.picNet40.Name = "picNet40";
             this.picNet40.Size = new System.Drawing.Size(32, 32);
+            this.picNet40.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picNet40.TabIndex = 11;
             this.picNet40.TabStop = false;
             // 
@@ -184,6 +190,7 @@
             this.picNet35.Location = new System.Drawing.Point(15, 29);
             this.picNet35.Name = "picNet35";
             this.picNet35.Size = new System.Drawing.Size(32, 32);
+            this.picNet35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picNet35.TabIndex = 10;
             this.picNet35.TabStop = false;
             // 
@@ -294,10 +301,10 @@
             // 
             // lblNetFx35sp1
             // 
-            this.lblNetFx35sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNetFx35sp1.Location = new System.Drawing.Point(6, 62);
+            this.lblNetFx35sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNetFx35sp1.Location = new System.Drawing.Point(-3, 62);
             this.lblNetFx35sp1.Name = "lblNetFx35sp1";
-            this.lblNetFx35sp1.Size = new System.Drawing.Size(52, 10);
+            this.lblNetFx35sp1.Size = new System.Drawing.Size(65, 15);
             this.lblNetFx35sp1.TabIndex = 14;
             this.lblNetFx35sp1.Text = "SP1 missing";
             this.lblNetFx35sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -305,10 +312,10 @@
             // 
             // lblVC2008sp1
             // 
-            this.lblVC2008sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVC2008sp1.Location = new System.Drawing.Point(6, 238);
+            this.lblVC2008sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVC2008sp1.Location = new System.Drawing.Point(-3, 238);
             this.lblVC2008sp1.Name = "lblVC2008sp1";
-            this.lblVC2008sp1.Size = new System.Drawing.Size(52, 10);
+            this.lblVC2008sp1.Size = new System.Drawing.Size(65, 15);
             this.lblVC2008sp1.TabIndex = 17;
             this.lblVC2008sp1.Text = "SP1 missing";
             this.lblVC2008sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -316,10 +323,10 @@
             // 
             // lblVC2005sp1
             // 
-            this.lblVC2005sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVC2005sp1.Location = new System.Drawing.Point(6, 175);
+            this.lblVC2005sp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVC2005sp1.Location = new System.Drawing.Point(-3, 175);
             this.lblVC2005sp1.Name = "lblVC2005sp1";
-            this.lblVC2005sp1.Size = new System.Drawing.Size(52, 10);
+            this.lblVC2005sp1.Size = new System.Drawing.Size(65, 15);
             this.lblVC2005sp1.TabIndex = 16;
             this.lblVC2005sp1.Text = "SP1 missing";
             this.lblVC2005sp1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -327,10 +334,10 @@
             // 
             // lblNetFx40
             // 
-            this.lblNetFx40.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNetFx40.Location = new System.Drawing.Point(6, 113);
+            this.lblNetFx40.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNetFx40.Location = new System.Drawing.Point(-3, 113);
             this.lblNetFx40.Name = "lblNetFx40";
-            this.lblNetFx40.Size = new System.Drawing.Size(52, 10);
+            this.lblNetFx40.Size = new System.Drawing.Size(65, 15);
             this.lblNetFx40.TabIndex = 15;
             this.lblNetFx40.Text = "missing";
             this.lblNetFx40.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -351,6 +358,60 @@
             this.tabConnection.TabIndex = 1;
             this.tabConnection.Text = "Connection";
             this.tabConnection.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label14.ForeColor = System.Drawing.Color.Blue;
+            label14.Location = new System.Drawing.Point(15, 135);
+            label14.Name = "label14";
+            label14.Size = new System.Drawing.Size(524, 211);
+            label14.TabIndex = 4;
+            label14.Text = "More \"Awesome\" will be coming soon™\r\n\r\nA list of all IPs/FQDNs and Ports (includi" +
+                "ng protocol) would be nice, so I can check whether it\'s possible to connect to t" +
+                "hem ;-)";
+            label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblHosts
+            // 
+            this.lblHosts.AutoSize = true;
+            this.lblHosts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblHosts.Location = new System.Drawing.Point(147, 32);
+            this.lblHosts.Name = "lblHosts";
+            this.lblHosts.Size = new System.Drawing.Size(173, 17);
+            this.lblHosts.TabIndex = 3;
+            this.lblHosts.Text = "5 suspicious entries found";
+            this.lblHosts.Visible = false;
+            // 
+            // linkHosts
+            // 
+            this.linkHosts.AutoSize = true;
+            this.linkHosts.Location = new System.Drawing.Point(54, 49);
+            this.linkHosts.Name = "linkHosts";
+            this.linkHosts.Size = new System.Drawing.Size(176, 17);
+            this.linkHosts.TabIndex = 2;
+            this.linkHosts.TabStop = true;
+            this.linkHosts.Text = "Open hosts file in Notepad";
+            this.linkHosts.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel8_LinkClicked);
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label13.Location = new System.Drawing.Point(53, 29);
+            label13.Name = "label13";
+            label13.Size = new System.Drawing.Size(88, 20);
+            label13.TabIndex = 1;
+            label13.Text = "\"hosts\" file:";
+            // 
+            // picHosts
+            // 
+            this.picHosts.Location = new System.Drawing.Point(15, 29);
+            this.picHosts.Name = "picHosts";
+            this.picHosts.Size = new System.Drawing.Size(32, 32);
+            this.picHosts.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picHosts.TabIndex = 0;
+            this.picHosts.TabStop = false;
             // 
             // tabHardware
             // 
@@ -380,7 +441,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(6, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(447, 147);
+            this.groupBox1.Size = new System.Drawing.Size(542, 147);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Video device";
@@ -388,7 +449,7 @@
             // picPixelShader
             // 
             this.picPixelShader.InitialImage = null;
-            this.picPixelShader.Location = new System.Drawing.Point(256, 118);
+            this.picPixelShader.Location = new System.Drawing.Point(224, 121);
             this.picPixelShader.Name = "picPixelShader";
             this.picPixelShader.Size = new System.Drawing.Size(20, 20);
             this.picPixelShader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -401,9 +462,9 @@
             this.lblPixelShader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPixelShader.Location = new System.Drawing.Point(142, 118);
             this.lblPixelShader.Name = "lblPixelShader";
-            this.lblPixelShader.Size = new System.Drawing.Size(108, 20);
+            this.lblPixelShader.Size = new System.Drawing.Size(76, 20);
             this.lblPixelShader.TabIndex = 10;
-            this.lblPixelShader.Text = "lblPixelShader";
+            this.lblPixelShader.Text = "Unknown";
             this.lblPixelShader.TextChanged += new System.EventHandler(this.lblPixelShader_TextChanged);
             // 
             // label7
@@ -419,13 +480,14 @@
             // lblDriverUrl
             // 
             this.lblDriverUrl.AutoSize = true;
+            this.lblDriverUrl.Enabled = false;
             this.lblDriverUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDriverUrl.Location = new System.Drawing.Point(142, 94);
             this.lblDriverUrl.Name = "lblDriverUrl";
-            this.lblDriverUrl.Size = new System.Drawing.Size(85, 20);
+            this.lblDriverUrl.Size = new System.Drawing.Size(76, 20);
             this.lblDriverUrl.TabIndex = 7;
             this.lblDriverUrl.TabStop = true;
-            this.lblDriverUrl.Text = "lblDriverUrl";
+            this.lblDriverUrl.Text = "Unknown";
             this.lblDriverUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDriverUrl_LinkClicked);
             // 
             // label6
@@ -444,9 +506,9 @@
             this.lblDriverDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDriverDate.Location = new System.Drawing.Point(142, 70);
             this.lblDriverDate.Name = "lblDriverDate";
-            this.lblDriverDate.Size = new System.Drawing.Size(100, 20);
+            this.lblDriverDate.Size = new System.Drawing.Size(76, 20);
             this.lblDriverDate.TabIndex = 5;
-            this.lblDriverDate.Text = "lblDriverDate";
+            this.lblDriverDate.Text = "Unknown";
             // 
             // label5
             // 
@@ -474,9 +536,9 @@
             this.lblDeviceVendor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDeviceVendor.Location = new System.Drawing.Point(142, 46);
             this.lblDeviceVendor.Name = "lblDeviceVendor";
-            this.lblDeviceVendor.Size = new System.Drawing.Size(124, 20);
+            this.lblDeviceVendor.Size = new System.Drawing.Size(76, 20);
             this.lblDeviceVendor.TabIndex = 3;
-            this.lblDeviceVendor.Text = "lblDeviceVendor";
+            this.lblDeviceVendor.Text = "Unknown";
             // 
             // lblDeviceName
             // 
@@ -484,9 +546,9 @@
             this.lblDeviceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDeviceName.Location = new System.Drawing.Point(142, 22);
             this.lblDeviceName.Name = "lblDeviceName";
-            this.lblDeviceName.Size = new System.Drawing.Size(114, 20);
+            this.lblDeviceName.Size = new System.Drawing.Size(76, 20);
             this.lblDeviceName.TabIndex = 1;
-            this.lblDeviceName.Text = "lblDeviceName";
+            this.lblDeviceName.Text = "Unknown";
             // 
             // label4
             // 
@@ -627,58 +689,14 @@
             this.statusError.Text = "0";
             this.statusError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // picHosts
+            // picDX
             // 
-            this.picHosts.Location = new System.Drawing.Point(15, 29);
-            this.picHosts.Name = "picHosts";
-            this.picHosts.Size = new System.Drawing.Size(32, 32);
-            this.picHosts.TabIndex = 0;
-            this.picHosts.TabStop = false;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            label13.Location = new System.Drawing.Point(53, 29);
-            label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(88, 20);
-            label13.TabIndex = 1;
-            label13.Text = "\"hosts\" file:";
-            // 
-            // linkHosts
-            // 
-            this.linkHosts.AutoSize = true;
-            this.linkHosts.Location = new System.Drawing.Point(54, 49);
-            this.linkHosts.Name = "linkHosts";
-            this.linkHosts.Size = new System.Drawing.Size(176, 17);
-            this.linkHosts.TabIndex = 2;
-            this.linkHosts.TabStop = true;
-            this.linkHosts.Text = "Open hosts file in Notepad";
-            this.linkHosts.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel8_LinkClicked);
-            // 
-            // lblHosts
-            // 
-            this.lblHosts.AutoSize = true;
-            this.lblHosts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblHosts.Location = new System.Drawing.Point(147, 32);
-            this.lblHosts.Name = "lblHosts";
-            this.lblHosts.Size = new System.Drawing.Size(173, 17);
-            this.lblHosts.TabIndex = 3;
-            this.lblHosts.Text = "5 suspicious entries found";
-            this.lblHosts.Visible = false;
-            // 
-            // label14
-            // 
-            label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label14.ForeColor = System.Drawing.Color.Blue;
-            label14.Location = new System.Drawing.Point(15, 135);
-            label14.Name = "label14";
-            label14.Size = new System.Drawing.Size(524, 211);
-            label14.TabIndex = 4;
-            label14.Text = "More \"Awesome\" will be coming soon™\r\n\r\nA list of all IPs/FQDNs and Ports (includi" +
-                "ng protocol) would be nice, so I can check whether it\'s possible to connect to t" +
-                "hem ;-)";
-            label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.picDX.Location = new System.Drawing.Point(15, 272);
+            this.picDX.Name = "picDX";
+            this.picDX.Size = new System.Drawing.Size(32, 32);
+            this.picDX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picDX.TabIndex = 18;
+            this.picDX.TabStop = false;
             // 
             // MainForm
             // 
@@ -700,6 +718,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picNet35)).EndInit();
             this.tabConnection.ResumeLayout(false);
             this.tabConnection.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picHosts)).EndInit();
             this.tabHardware.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -708,7 +727,7 @@
             this.tabCredits.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picHosts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -752,6 +771,7 @@
         internal System.Windows.Forms.PictureBox picHosts;
         internal System.Windows.Forms.Label lblHosts;
         internal System.Windows.Forms.LinkLabel linkHosts;
+        internal System.Windows.Forms.PictureBox picDX;
     }
 }
 

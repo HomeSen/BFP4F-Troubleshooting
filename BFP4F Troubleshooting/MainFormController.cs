@@ -15,11 +15,8 @@ namespace BFP4F_Troubleshooting
             this.mainForm = (MainForm)mainForm;
         }
 
-        public void GetVideoDevice()
+        private void GetVideoDevice()
         {
-            if (HardwareHelper.Initialized == false)
-                HardwareHelper.Initialize(this.mainForm);
-
             this.mainForm.lblDeviceName.Text = HardwareHelper.GetDeviceName();
             string[] vendor = HardwareHelper.GetDeviceVendor();
             if (vendor.Length == 2)
@@ -92,6 +89,22 @@ namespace BFP4F_Troubleshooting
 
         void DirectXTest()
         {
+            try
+            {
+                HardwareHelper.Initialize(this.mainForm);
+            }
+            catch { }
+            
+            if (Program.dxFailed)
+            {
+                this.mainForm.picDX.Image = Properties.Resources.error;
+                this.mainForm.lblDriverUrl.Enabled = false;
+                return;
+            }
+                
+            this.mainForm.picDX.Image = Properties.Resources.success;
+            this.mainForm.lblDriverUrl.Enabled = true;
+
             GetVideoDevice();
         }
 
