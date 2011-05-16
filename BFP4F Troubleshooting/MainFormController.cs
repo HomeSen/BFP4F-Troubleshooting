@@ -8,7 +8,10 @@ namespace BFP4F_Troubleshooting
     class MainFormController
     {
         MainForm mainForm = null;
-
+        const int MIN_PIXELSHADER = 2;
+        const int MIN_VIDEOMEMORY = 256;
+        const int MIN_CPU = 1700;
+        const int MIN_RAM = 512;
 
         public MainFormController(Form mainForm)
         {
@@ -23,11 +26,13 @@ namespace BFP4F_Troubleshooting
             {
                 this.mainForm.lblDeviceVendor.Text = vendor[0];
                 this.mainForm.lblDriverUrl.Text = vendor[1];
+                this.mainForm.Success++;
             }
             else
             {
                 this.mainForm.lblDeviceVendor.Text = "unknown";
                 this.mainForm.lblDriverUrl.Text = "unknown";
+                this.mainForm.Errors++;
             }
             this.mainForm.lblDriverDate.Text = HardwareHelper.GetDriverVersion();
 
@@ -36,7 +41,7 @@ namespace BFP4F_Troubleshooting
             if (version != null)
             {
                 this.mainForm.lblPixelShader.Text = version.ToString();
-                if (version.Major < 2)
+                if (version.Major < MIN_PIXELSHADER)
                 {
                     this.mainForm.picPixelShader.Image = Properties.Resources.error;
                     this.mainForm.Errors++;
@@ -53,6 +58,25 @@ namespace BFP4F_Troubleshooting
                 this.mainForm.picPixelShader.Image = Properties.Resources.warning;
                 this.mainForm.Warnings++;
             }
+
+            // Get (combined) video memory
+            int videoMemory = HardwareHelper.GetVideoMemory();
+            this.mainForm.lblVideoMem.Text = videoMemory + " MB";
+            if (videoMemory > MIN_VIDEOMEMORY)
+            {
+                this.mainForm.picVideoMem.Image = Properties.Resources.success;
+                this.mainForm.Success++;
+            }
+            else if (videoMemory == MIN_VIDEOMEMORY)
+            {
+                this.mainForm.picVideoMem.Image = Properties.Resources.warning;
+                this.mainForm.Warnings++;
+            }
+            else
+            {
+                this.mainForm.picVideoMem.Image = Properties.Resources.error;
+                this.mainForm.Errors++;
+            }
         }
 
         public void RunTests()
@@ -61,6 +85,40 @@ namespace BFP4F_Troubleshooting
             VCRTTest();
             DirectXTest();
             ConnectionTest();
+            HardwareTest();
+        }
+
+        private void HardwareTest()
+        {
+            string windowsVersion = HardwareHelper.GetWindowsVersion();
+            this.mainForm.lblOperatingSystem.Text = windowsVersion;
+
+            uint cpuSpeed = HardwareHelper.GetCPUSpeed();
+            if (cpuSpeed > 0)
+            {
+                this.mainForm.lblCPU.Text = cpuSpeed + " MHz";
+                uint logicalCpus = HardwareHelper.GetLogicalCPUCount();
+                if (logicalCpus > 0)
+                    this.mainForm.lblCPU.Text += " (" + logicalCpus + " cores)";
+                this.mainForm.Success++;
+            }
+            else
+            {
+                this.mainForm.lblCPU.Text = "Error!";
+                this.mainForm.Errors++;
+            }
+        
+            double memory = HardwareHelper.GetMemory();
+            if (memory > 0)
+            {
+                this.mainForm.lblRAM.Text = memory.ToString("#,##0.00") + " MB";
+                this.mainForm.Success++;
+            }
+            else
+            {
+                this.mainForm.lblRAM.Text = "Error!";
+                this.mainForm.Errors++;
+            }
         }
 
         private void ConnectionTest()
@@ -71,12 +129,14 @@ namespace BFP4F_Troubleshooting
                 this.mainForm.picHosts.Image = Properties.Resources.success;
                 this.mainForm.lblHosts.Visible = false;
                 this.mainForm.linkHosts.Enabled = true;
+                this.mainForm.Success++;
             }
             else if (hosts == -1)
             {
                 this.mainForm.picHosts.Image = Properties.Resources.warning;
                 this.mainForm.lblHosts.Text = "Could not find hosts file";
                 this.mainForm.linkHosts.Enabled = false;
+                this.mainForm.Warnings++;
             }
             else
             {
@@ -84,6 +144,7 @@ namespace BFP4F_Troubleshooting
                 this.mainForm.lblHosts.Text = hosts + " suspicious entries found";
                 this.mainForm.lblHosts.Visible = true;
                 this.mainForm.linkHosts.Enabled = true;
+                this.mainForm.Warnings++;
             }
         }
 
@@ -99,11 +160,13 @@ namespace BFP4F_Troubleshooting
             {
                 this.mainForm.picDX.Image = Properties.Resources.error;
                 this.mainForm.lblDriverUrl.Enabled = false;
+                this.mainForm.Errors++;
                 return;
             }
                 
             this.mainForm.picDX.Image = Properties.Resources.success;
             this.mainForm.lblDriverUrl.Enabled = true;
+            this.mainForm.Success++;
 
             GetVideoDevice();
         }

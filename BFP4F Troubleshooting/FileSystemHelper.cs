@@ -7,6 +7,8 @@ namespace BFP4F_Troubleshooting
 {
     class FileSystemHelper
     {
+        #region Hosts file
+
         public static int CheckHostsFile()
         {
             int result = 0;
@@ -56,5 +58,60 @@ namespace BFP4F_Troubleshooting
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
         }
+
+        #endregion
+
+
+        #region Game files
+
+        public static void OpenScreenshotFolder()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (path.EndsWith(@"\") == false)
+                path += @"\";
+            path += @"Battlefield Play4Free\Screenshots";
+
+            if (Directory.Exists(path) == false)
+                Directory.CreateDirectory(path);
+
+            System.Diagnostics.Process.Start(path);
+        }
+
+        public static void ClearCacheFolder()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (path.EndsWith(@"\") == false)
+                path += @"\";
+            path += @"Battlefield Play4Free\mods\main\cache";
+
+            if (Directory.Exists(path) == false)
+                return;
+            try
+            {
+                Directory.Delete(path, true);
+            }
+            catch { }
+
+            if (Directory.Exists(path) == false)
+                Directory.CreateDirectory(path);
+        }
+
+        public static void DeleteControls()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (path.EndsWith(@"\") == false)
+                path += @"\";
+            path += @"Battlefield Play4Free\Controls.con";
+
+            if (File.Exists(path) == false)
+                return;
+            try
+            {
+                File.Move(path, path + "." + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+            }
+            catch { }
+        }
+
+        #endregion
     }
 }

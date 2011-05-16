@@ -36,15 +36,27 @@
             System.Windows.Forms.Label label8;
             System.Windows.Forms.Label label14;
             System.Windows.Forms.Label label13;
+            System.Windows.Forms.GroupBox groupBox1;
+            System.Windows.Forms.Label label15;
             System.Windows.Forms.Label label7;
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label1;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+            System.Windows.Forms.GroupBox groupBox2;
+            System.Windows.Forms.Label label16;
+            System.Windows.Forms.Label label17;
+            System.Windows.Forms.Label label18;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.Label label19;
+            System.Windows.Forms.GroupBox groupBox3;
+            System.Windows.Forms.Label label20;
+            System.Windows.Forms.Label label22;
             this.tabPrereq = new System.Windows.Forms.TabPage();
             this.picDX = new System.Windows.Forms.PictureBox();
             this.picVC2008 = new System.Windows.Forms.PictureBox();
@@ -65,23 +77,32 @@
             this.linkHosts = new System.Windows.Forms.LinkLabel();
             this.picHosts = new System.Windows.Forms.PictureBox();
             this.tabHardware = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.picVideoMem = new System.Windows.Forms.PictureBox();
+            this.lblVideoMem = new System.Windows.Forms.Label();
             this.picPixelShader = new System.Windows.Forms.PictureBox();
             this.lblPixelShader = new System.Windows.Forms.Label();
             this.lblDriverUrl = new System.Windows.Forms.LinkLabel();
             this.lblDriverDate = new System.Windows.Forms.Label();
             this.lblDeviceVendor = new System.Windows.Forms.Label();
             this.lblDeviceName = new System.Windows.Forms.Label();
+            this.tabMisc = new System.Windows.Forms.TabPage();
             this.tabCredits = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusSuccess = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusWarning = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusError = new System.Windows.Forms.ToolStripStatusLabel();
+            this.linkScreenshot = new System.Windows.Forms.LinkLabel();
+            this.linkShaderCache = new System.Windows.Forms.LinkLabel();
+            this.linkDeleteControls = new System.Windows.Forms.LinkLabel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.lblOperatingSystem = new System.Windows.Forms.Label();
+            this.lblCPU = new System.Windows.Forms.Label();
+            this.lblRAM = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             tabControl1 = new System.Windows.Forms.TabControl();
             label12 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -90,14 +111,26 @@
             label8 = new System.Windows.Forms.Label();
             label14 = new System.Windows.Forms.Label();
             label13 = new System.Windows.Forms.Label();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            label15 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            groupBox2 = new System.Windows.Forms.GroupBox();
+            label16 = new System.Windows.Forms.Label();
+            label17 = new System.Windows.Forms.Label();
+            label18 = new System.Windows.Forms.Label();
+            label19 = new System.Windows.Forms.Label();
+            groupBox3 = new System.Windows.Forms.GroupBox();
+            label20 = new System.Windows.Forms.Label();
+            label22 = new System.Windows.Forms.Label();
             tabControl1.SuspendLayout();
             this.tabPrereq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picDX)).BeginInit();
@@ -108,10 +141,14 @@
             this.tabConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHosts)).BeginInit();
             this.tabHardware.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picVideoMem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPixelShader)).BeginInit();
+            this.tabMisc.SuspendLayout();
             this.tabCredits.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -122,6 +159,7 @@
             tabControl1.Controls.Add(this.tabPrereq);
             tabControl1.Controls.Add(this.tabConnection);
             tabControl1.Controls.Add(this.tabHardware);
+            tabControl1.Controls.Add(this.tabMisc);
             tabControl1.Controls.Add(this.tabCredits);
             tabControl1.Location = new System.Drawing.Point(12, 12);
             tabControl1.Name = "tabControl1";
@@ -425,7 +463,8 @@
             // 
             // tabHardware
             // 
-            this.tabHardware.Controls.Add(this.groupBox1);
+            this.tabHardware.Controls.Add(groupBox3);
+            this.tabHardware.Controls.Add(groupBox1);
             this.tabHardware.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabHardware.Location = new System.Drawing.Point(4, 22);
             this.tabHardware.Name = "tabHardware";
@@ -437,29 +476,59 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.picPixelShader);
-            this.groupBox1.Controls.Add(this.lblPixelShader);
-            this.groupBox1.Controls.Add(label7);
-            this.groupBox1.Controls.Add(this.lblDriverUrl);
-            this.groupBox1.Controls.Add(label6);
-            this.groupBox1.Controls.Add(this.lblDriverDate);
-            this.groupBox1.Controls.Add(label5);
-            this.groupBox1.Controls.Add(label3);
-            this.groupBox1.Controls.Add(this.lblDeviceVendor);
-            this.groupBox1.Controls.Add(this.lblDeviceName);
-            this.groupBox1.Controls.Add(label4);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(6, 21);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(542, 147);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Video device";
+            groupBox1.Controls.Add(this.picVideoMem);
+            groupBox1.Controls.Add(this.lblVideoMem);
+            groupBox1.Controls.Add(label15);
+            groupBox1.Controls.Add(this.picPixelShader);
+            groupBox1.Controls.Add(this.lblPixelShader);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(this.lblDriverUrl);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(this.lblDriverDate);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(this.lblDeviceVendor);
+            groupBox1.Controls.Add(this.lblDeviceName);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            groupBox1.Location = new System.Drawing.Point(6, 21);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(542, 175);
+            groupBox1.TabIndex = 4;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Video device";
+            // 
+            // picVideoMem
+            // 
+            this.picVideoMem.Location = new System.Drawing.Point(224, 144);
+            this.picVideoMem.Name = "picVideoMem";
+            this.picVideoMem.Size = new System.Drawing.Size(20, 20);
+            this.picVideoMem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picVideoMem.TabIndex = 14;
+            this.picVideoMem.TabStop = false;
+            // 
+            // lblVideoMem
+            // 
+            this.lblVideoMem.AutoSize = true;
+            this.lblVideoMem.Location = new System.Drawing.Point(142, 144);
+            this.lblVideoMem.Name = "lblVideoMem";
+            this.lblVideoMem.Size = new System.Drawing.Size(76, 20);
+            this.lblVideoMem.TabIndex = 13;
+            this.lblVideoMem.Text = "Unknown";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new System.Drawing.Point(6, 144);
+            label15.Name = "label15";
+            label15.Size = new System.Drawing.Size(110, 20);
+            label15.TabIndex = 12;
+            label15.Text = "VideoMemory:";
             // 
             // picPixelShader
             // 
             this.picPixelShader.InitialImage = null;
-            this.picPixelShader.Location = new System.Drawing.Point(224, 121);
+            this.picPixelShader.Location = new System.Drawing.Point(224, 118);
             this.picPixelShader.Name = "picPixelShader";
             this.picPixelShader.Size = new System.Drawing.Size(20, 20);
             this.picPixelShader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -475,7 +544,6 @@
             this.lblPixelShader.Size = new System.Drawing.Size(76, 20);
             this.lblPixelShader.TabIndex = 10;
             this.lblPixelShader.Text = "Unknown";
-            this.lblPixelShader.TextChanged += new System.EventHandler(this.lblPixelShader_TextChanged);
             // 
             // label7
             // 
@@ -570,12 +638,26 @@
             label4.TabIndex = 2;
             label4.Text = "Vendor:";
             // 
+            // tabMisc
+            // 
+            this.tabMisc.Controls.Add(label19);
+            this.tabMisc.Controls.Add(groupBox2);
+            this.tabMisc.Location = new System.Drawing.Point(4, 22);
+            this.tabMisc.Name = "tabMisc";
+            this.tabMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMisc.Size = new System.Drawing.Size(554, 365);
+            this.tabMisc.TabIndex = 4;
+            this.tabMisc.Text = "Miscellaneous";
+            this.tabMisc.UseVisualStyleBackColor = true;
+            // 
             // tabCredits
             // 
+            this.tabCredits.Controls.Add(this.linkLabel9);
+            this.tabCredits.Controls.Add(this.label23);
             this.tabCredits.Controls.Add(this.linkLabel2);
-            this.tabCredits.Controls.Add(this.label2);
+            this.tabCredits.Controls.Add(label2);
             this.tabCredits.Controls.Add(this.linkLabel1);
-            this.tabCredits.Controls.Add(this.label1);
+            this.tabCredits.Controls.Add(label1);
             this.tabCredits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabCredits.Location = new System.Drawing.Point(4, 22);
             this.tabCredits.Name = "tabCredits";
@@ -600,13 +682,13 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 81);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(407, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Christian Häfner for his comment on Aaron Stebner\'s Blog post:";
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label2.Location = new System.Drawing.Point(6, 81);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(407, 17);
+            label2.TabIndex = 2;
+            label2.Text = "Christian Häfner for his comment on Aaron Stebner\'s Blog post:";
             // 
             // linkLabel1
             // 
@@ -622,13 +704,13 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(255, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Kambaa for his/her CodeProject article:";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label1.Location = new System.Drawing.Point(6, 41);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(255, 17);
+            label1.TabIndex = 0;
+            label1.Text = "Kambaa for his/her CodeProject article:";
             // 
             // toolStripStatusLabel1
             // 
@@ -699,6 +781,184 @@
             this.statusError.Text = "0";
             this.statusError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(label18);
+            groupBox2.Controls.Add(this.linkDeleteControls);
+            groupBox2.Controls.Add(label17);
+            groupBox2.Controls.Add(this.linkShaderCache);
+            groupBox2.Controls.Add(this.linkScreenshot);
+            groupBox2.Controls.Add(label16);
+            groupBox2.Location = new System.Drawing.Point(6, 18);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new System.Drawing.Size(542, 203);
+            groupBox2.TabIndex = 0;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "User game-files";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new System.Drawing.Point(6, 33);
+            label16.Name = "label16";
+            label16.Size = new System.Drawing.Size(475, 13);
+            label16.TabIndex = 0;
+            label16.Text = "If the folder doesn\'t exist, it will be created, and thus fix the issue of screen" +
+                "shots not being created ;)";
+            // 
+            // linkScreenshot
+            // 
+            this.linkScreenshot.AutoSize = true;
+            this.linkScreenshot.Location = new System.Drawing.Point(6, 20);
+            this.linkScreenshot.Name = "linkScreenshot";
+            this.linkScreenshot.Size = new System.Drawing.Size(117, 13);
+            this.linkScreenshot.TabIndex = 1;
+            this.linkScreenshot.TabStop = true;
+            this.linkScreenshot.Text = "Open screenshot folder";
+            this.linkScreenshot.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkScreenshot_LinkClicked);
+            // 
+            // linkShaderCache
+            // 
+            this.linkShaderCache.AutoSize = true;
+            this.linkShaderCache.Location = new System.Drawing.Point(6, 62);
+            this.linkShaderCache.Name = "linkShaderCache";
+            this.linkShaderCache.Size = new System.Drawing.Size(93, 13);
+            this.linkShaderCache.TabIndex = 2;
+            this.linkShaderCache.TabStop = true;
+            this.linkShaderCache.Text = "Clear cache folder";
+            this.linkShaderCache.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkShaderCache_LinkClicked);
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new System.Drawing.Point(6, 75);
+            label17.Name = "label17";
+            label17.Size = new System.Drawing.Size(519, 26);
+            label17.TabIndex = 3;
+            label17.Text = "The cache folders contains precalculated shader data. Sometimes these files can c" +
+                "ause \"Invalid game data\"\r\nerrors. Also does clearing the cache (sometimes) help " +
+                "to fix the blurry sight when aiming.";
+            // 
+            // linkDeleteControls
+            // 
+            this.linkDeleteControls.AutoSize = true;
+            this.linkDeleteControls.Location = new System.Drawing.Point(6, 127);
+            this.linkDeleteControls.Name = "linkDeleteControls";
+            this.linkDeleteControls.Size = new System.Drawing.Size(110, 13);
+            this.linkDeleteControls.TabIndex = 4;
+            this.linkDeleteControls.TabStop = true;
+            this.linkDeleteControls.Text = "Delete \"Controls.con\"";
+            this.linkDeleteControls.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkDeleteControls_LinkClicked);
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new System.Drawing.Point(6, 140);
+            label18.Name = "label18";
+            label18.Size = new System.Drawing.Size(512, 52);
+            label18.TabIndex = 5;
+            label18.Text = resources.GetString("label18.Text");
+            // 
+            // label19
+            // 
+            label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label19.ForeColor = System.Drawing.Color.Blue;
+            label19.Location = new System.Drawing.Point(11, 241);
+            label19.Name = "label19";
+            label19.Size = new System.Drawing.Size(524, 57);
+            label19.TabIndex = 5;
+            label19.Text = "More \"Awesome\" will be coming soon™";
+            label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(this.lblRAM);
+            groupBox3.Controls.Add(this.lblCPU);
+            groupBox3.Controls.Add(this.lblOperatingSystem);
+            groupBox3.Controls.Add(label22);
+            groupBox3.Controls.Add(this.label21);
+            groupBox3.Controls.Add(label20);
+            groupBox3.Location = new System.Drawing.Point(6, 202);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new System.Drawing.Size(542, 157);
+            groupBox3.TabIndex = 5;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "System";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new System.Drawing.Point(6, 22);
+            label20.Name = "label20";
+            label20.Size = new System.Drawing.Size(140, 20);
+            label20.TabIndex = 0;
+            label20.Text = "Operating System:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 48);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(84, 20);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "Processor:";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new System.Drawing.Point(6, 74);
+            label22.Name = "label22";
+            label22.Size = new System.Drawing.Size(69, 20);
+            label22.TabIndex = 2;
+            label22.Text = "Memory:";
+            // 
+            // lblOperatingSystem
+            // 
+            this.lblOperatingSystem.AutoSize = true;
+            this.lblOperatingSystem.Location = new System.Drawing.Point(152, 22);
+            this.lblOperatingSystem.Name = "lblOperatingSystem";
+            this.lblOperatingSystem.Size = new System.Drawing.Size(76, 20);
+            this.lblOperatingSystem.TabIndex = 3;
+            this.lblOperatingSystem.Text = "Unknown";
+            // 
+            // lblCPU
+            // 
+            this.lblCPU.AutoSize = true;
+            this.lblCPU.Location = new System.Drawing.Point(152, 48);
+            this.lblCPU.Name = "lblCPU";
+            this.lblCPU.Size = new System.Drawing.Size(76, 20);
+            this.lblCPU.TabIndex = 4;
+            this.lblCPU.Text = "Unknown";
+            // 
+            // lblRAM
+            // 
+            this.lblRAM.AutoSize = true;
+            this.lblRAM.Location = new System.Drawing.Point(152, 74);
+            this.lblRAM.Name = "lblRAM";
+            this.lblRAM.Size = new System.Drawing.Size(76, 20);
+            this.lblRAM.TabIndex = 5;
+            this.lblRAM.Text = "Unknown";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 138);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(264, 17);
+            this.label23.TabIndex = 4;
+            this.label23.Text = "Frank Dzaebel for his VersionInfo article:";
+            // 
+            // linkLabel9
+            // 
+            this.linkLabel9.AutoSize = true;
+            this.linkLabel9.Location = new System.Drawing.Point(3, 155);
+            this.linkLabel9.Name = "linkLabel9";
+            this.linkLabel9.Size = new System.Drawing.Size(255, 17);
+            this.linkLabel9.TabIndex = 5;
+            this.linkLabel9.TabStop = true;
+            this.linkLabel9.Text = "Betriebssystemerkennung mit C# .NET ";
+            this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -708,6 +968,8 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(602, 521);
             this.MinimumSize = new System.Drawing.Size(602, 521);
             this.Name = "MainForm";
             this.Text = "BF:P4F Troubleshooting";
@@ -723,13 +985,19 @@
             this.tabConnection.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHosts)).EndInit();
             this.tabHardware.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picVideoMem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPixelShader)).EndInit();
+            this.tabMisc.ResumeLayout(false);
             this.tabCredits.ResumeLayout(false);
             this.tabCredits.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -746,11 +1014,8 @@
         private System.Windows.Forms.TabPage tabConnection;
         private System.Windows.Forms.TabPage tabCredits;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.TabPage tabHardware;
-        private System.Windows.Forms.GroupBox groupBox1;
         internal System.Windows.Forms.LinkLabel lblDriverUrl;
         internal System.Windows.Forms.Label lblDriverDate;
         internal System.Windows.Forms.Label lblDeviceVendor;
@@ -774,6 +1039,18 @@
         internal System.Windows.Forms.Label lblHosts;
         internal System.Windows.Forms.LinkLabel linkHosts;
         internal System.Windows.Forms.PictureBox picDX;
+        internal System.Windows.Forms.PictureBox picVideoMem;
+        internal System.Windows.Forms.Label lblVideoMem;
+        private System.Windows.Forms.TabPage tabMisc;
+        private System.Windows.Forms.LinkLabel linkScreenshot;
+        private System.Windows.Forms.LinkLabel linkShaderCache;
+        private System.Windows.Forms.LinkLabel linkDeleteControls;
+        private System.Windows.Forms.Label label21;
+        internal System.Windows.Forms.Label lblRAM;
+        internal System.Windows.Forms.Label lblCPU;
+        internal System.Windows.Forms.Label lblOperatingSystem;
+        private System.Windows.Forms.LinkLabel linkLabel9;
+        private System.Windows.Forms.Label label23;
     }
 }
 

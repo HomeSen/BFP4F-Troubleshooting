@@ -65,15 +65,11 @@ namespace BFP4F_Troubleshooting
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            this.btnStart.Enabled = false;
             this.Success = 0;
             this.Warnings = 0;
             this.Errors = 0;
             this._controller.RunTests();
-        }
-
-        private void lblPixelShader_TextChanged(object sender, EventArgs e)
-        {
-            picPixelShader.Left = (lblPixelShader.Location.X + lblPixelShader.Width + 6);
         }
 
 
@@ -125,6 +121,26 @@ namespace BFP4F_Troubleshooting
             FileSystemHelper.OpenHostsFile();
         }
 
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://dzaebel.net/VersionInfo.htm");
+        }
+
         #endregion
+
+        private void linkScreenshot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FileSystemHelper.OpenScreenshotFolder();
+        }
+
+        private void linkShaderCache_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FileSystemHelper.ClearCacheFolder();
+        }
+
+        private void linkDeleteControls_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FileSystemHelper.DeleteControls();
+        }
     }
 }
