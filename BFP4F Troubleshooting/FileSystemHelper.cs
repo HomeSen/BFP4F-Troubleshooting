@@ -64,12 +64,23 @@ namespace BFP4F_Troubleshooting
 
         #region Game files
 
-        public static void OpenScreenshotFolder()
+        private static string GetUserFolderPath()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (path.EndsWith(@"\") == false)
                 path += @"\";
-            path += @"Battlefield Play4Free\Screenshots";
+            path += @"Battlefield Play4Free";
+
+            if (Directory.Exists(path) == false)
+                Directory.CreateDirectory(path);
+            
+            return path;
+        }
+
+        public static void OpenScreenshotFolder()
+        {
+            string path = GetUserFolderPath();
+            path += @"\Screenshots";
 
             if (Directory.Exists(path) == false)
                 Directory.CreateDirectory(path);
@@ -79,10 +90,8 @@ namespace BFP4F_Troubleshooting
 
         public static void ClearCacheFolder()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (path.EndsWith(@"\") == false)
-                path += @"\";
-            path += @"Battlefield Play4Free\mods\main\cache";
+            string path = GetUserFolderPath();
+            path += @"\mods\main\cache";
 
             if (Directory.Exists(path) == false)
                 return;
@@ -98,10 +107,8 @@ namespace BFP4F_Troubleshooting
 
         public static void DeleteControls()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (path.EndsWith(@"\") == false)
-                path += @"\";
-            path += @"Battlefield Play4Free\Controls.con";
+            string path = GetUserFolderPath();
+            path += @"\Controls.con";
 
             if (File.Exists(path) == false)
                 return;
