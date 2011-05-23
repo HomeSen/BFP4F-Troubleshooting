@@ -15,7 +15,10 @@ namespace BFP4F_Troubleshooting
         MainFormController _controller;
         int success = 0;
         int warnings = 0;
-        int errors = 0; 
+        int errors = 0;
+
+        PictureBox[] _serverIcons;
+        Label[] _serverLabels;
 
         #endregion
 
@@ -50,7 +53,17 @@ namespace BFP4F_Troubleshooting
                 errors = value;
                 statusError.Text = errors.ToString();
             }
-        } 
+        }
+
+        public PictureBox[] ServerIcons
+        {
+            get { return this._serverIcons; }
+        }
+
+        public Label[] ServerLabels
+        {
+            get { return _serverLabels; }
+        }
 
         #endregion
 
@@ -60,16 +73,44 @@ namespace BFP4F_Troubleshooting
             InitializeComponent();
 
             this._controller = new MainFormController(this);
+            InitArrays();
+
             //this.btnStart_Click(this, new EventArgs());
+        }
+
+        private void InitArrays()
+        {
+            this._serverIcons = new PictureBox[7];
+            this._serverIcons[0] = this.picServerMaster;
+            this._serverIcons[1] = this.picServerRedirector;
+            this._serverIcons[2] = this.picServerDataUSWest;
+            this._serverIcons[3] = this.picServerDataUSEast;
+            this._serverIcons[4] = this.picServerDataAustralia;
+            this._serverIcons[5] = this.picServerDataEurope;
+            this._serverIcons[6] = this.picServerCDN;
+
+            this._serverLabels = new Label[7];
+            this._serverLabels[0] = this.lblServerMaster;
+            this._serverLabels[1] = this.lblServerRedirector;
+            this._serverLabels[2] = this.lblServerDataUSWest;
+            this._serverLabels[3] = this.lblServerDataUSEast;
+            this._serverLabels[4] = this.lblServerDataAustralia;
+            this._serverLabels[5] = this.lblServerDataEurope;
+            this._serverLabels[6] = this.lblServerCDN;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            Cursor currentCursor = this.Cursor;
+            this.Cursor = Cursors.WaitCursor;
+
             this.btnStart.Enabled = false;
             this.Success = 0;
             this.Warnings = 0;
             this.Errors = 0;
             this._controller.RunTests();
+
+            this.Cursor = currentCursor;
         }
 
 
@@ -126,8 +167,6 @@ namespace BFP4F_Troubleshooting
             System.Diagnostics.Process.Start("http://dzaebel.net/VersionInfo.htm");
         }
 
-        #endregion
-
         private void linkScreenshot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FileSystemHelper.OpenScreenshotFolder();
@@ -142,5 +181,17 @@ namespace BFP4F_Troubleshooting
         {
             FileSystemHelper.DeleteControls();
         }
+
+        private void linkAutoProxy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RegistryHelper.DisableAutomaticProxy();
+        }
+
+        private void linkLabel8_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("inetcpl.cpl");
+        }
+
+        #endregion
     }
 }

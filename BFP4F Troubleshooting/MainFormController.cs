@@ -20,6 +20,9 @@ namespace BFP4F_Troubleshooting
 
         private void GetVideoDevice()
         {
+            this.mainForm.lblStatus.Text = "Checking Hardware (Video device) ...";
+            Application.DoEvents();
+
             this.mainForm.lblDeviceName.Text = HardwareHelper.GetDeviceName();
             string[] vendor = HardwareHelper.GetDeviceVendor();
             if (vendor.Length == 2)
@@ -30,8 +33,8 @@ namespace BFP4F_Troubleshooting
             }
             else
             {
-                this.mainForm.lblDeviceVendor.Text = "unknown";
-                this.mainForm.lblDriverUrl.Text = "unknown";
+                this.mainForm.lblDeviceVendor.Text = Properties.Resources.TextUnknown;
+                this.mainForm.lblDriverUrl.Text = Properties.Resources.TextUnknown;
                 this.mainForm.Errors++;
             }
             this.mainForm.lblDriverDate.Text = HardwareHelper.GetDriverVersion();
@@ -43,19 +46,19 @@ namespace BFP4F_Troubleshooting
                 this.mainForm.lblPixelShader.Text = version.ToString();
                 if (version.Major < MIN_PIXELSHADER)
                 {
-                    this.mainForm.picPixelShader.Image = Properties.Resources.error;
+                    this.mainForm.picPixelShader.Image = Properties.Resources.IconError;
                     this.mainForm.Errors++;
                 }
                 else
                 {
-                    this.mainForm.picPixelShader.Image = Properties.Resources.success;
+                    this.mainForm.picPixelShader.Image = Properties.Resources.IconSuccess;
                     this.mainForm.Success++;
                 }
             }
             else
             {
-                this.mainForm.lblPixelShader.Text = "unknown";
-                this.mainForm.picPixelShader.Image = Properties.Resources.warning;
+                this.mainForm.lblPixelShader.Text = Properties.Resources.TextUnknown;
+                this.mainForm.picPixelShader.Image = Properties.Resources.IconWarning;
                 this.mainForm.Warnings++;
             }
 
@@ -64,17 +67,17 @@ namespace BFP4F_Troubleshooting
             this.mainForm.lblVideoMem.Text = videoMemory + " MB";
             if (videoMemory > MIN_VIDEOMEMORY)
             {
-                this.mainForm.picVideoMem.Image = Properties.Resources.success;
+                this.mainForm.picVideoMem.Image = Properties.Resources.IconSuccess;
                 this.mainForm.Success++;
             }
             else if (videoMemory == MIN_VIDEOMEMORY)
             {
-                this.mainForm.picVideoMem.Image = Properties.Resources.warning;
+                this.mainForm.picVideoMem.Image = Properties.Resources.IconWarning;
                 this.mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picVideoMem.Image = Properties.Resources.error;
+                this.mainForm.picVideoMem.Image = Properties.Resources.IconError;
                 this.mainForm.Errors++;
             }
         }
@@ -86,10 +89,16 @@ namespace BFP4F_Troubleshooting
             DirectXTest();
             ConnectionTest();
             HardwareTest();
+
+            this.mainForm.lblStatus.Text = "Finished testing.";
+            Application.DoEvents();
         }
 
         private void HardwareTest()
         {
+            this.mainForm.lblStatus.Text = "Checking Hardware (CPU + RAM) ...";
+            Application.DoEvents();
+
             string windowsVersion = HardwareHelper.GetWindowsVersion();
             this.mainForm.lblOperatingSystem.Text = windowsVersion;
 
@@ -99,12 +108,25 @@ namespace BFP4F_Troubleshooting
                 this.mainForm.lblCPU.Text = cpuSpeed + " MHz";
                 uint logicalCpus = HardwareHelper.GetLogicalCPUCount();
                 if (logicalCpus > 0)
+                {
                     this.mainForm.lblCPU.Text += " (" + logicalCpus + " cores)";
-                this.mainForm.Success++;
+                }
+
+                if ((cpuSpeed <= (MIN_CPU * 1.25)) && (logicalCpus <= 1))
+                {
+                    this.mainForm.picCPU.Image = Properties.Resources.IconWarning;
+                    this.mainForm.Warnings++;
+                }
+                else
+                {
+                    this.mainForm.picCPU.Image = Properties.Resources.IconSuccess;
+                    this.mainForm.Success++;
+                }
             }
             else
             {
-                this.mainForm.lblCPU.Text = "Error!";
+                this.mainForm.picCPU.Image = Properties.Resources.IconError;
+                this.mainForm.lblCPU.Text = Properties.Resources.TextError;
                 this.mainForm.Errors++;
             }
         
@@ -112,35 +134,91 @@ namespace BFP4F_Troubleshooting
             if (memory > 0)
             {
                 this.mainForm.lblRAM.Text = memory.ToString("#,##0.00") + " MB";
-                this.mainForm.Success++;
+
+                if (memory < MIN_RAM)
+                {
+                    this.mainForm.picRAM.Image = Properties.Resources.IconError;
+                    this.mainForm.Errors++;
+                }
+                else if ((memory >= MIN_RAM) && (memory <= (MIN_RAM * 2)))
+                {
+                    this.mainForm.picRAM.Image = Properties.Resources.IconWarning;
+                    this.mainForm.Warnings++;
+                }
+                else
+                {
+                    this.mainForm.picRAM.Image = Properties.Resources.IconSuccess;
+                    this.mainForm.Success++;
+                }
             }
             else
             {
-                this.mainForm.lblRAM.Text = "Error!";
+                this.mainForm.picRAM.Image = Properties.Resources.IconError;
+                this.mainForm.lblRAM.Text = Properties.Resources.TextError;
                 this.mainForm.Errors++;
             }
         }
 
         private void ConnectionTest()
         {
+            CheckHostsFile();
+            PingServers();
+        }
+
+        private void PingServers()
+        {
+            this.mainForm.lblStatus.Text = "Checking Connection (pinging servers) ...";
+            Application.DoEvents();
+
+            long replyTime = 0;
+
+            for (int i = 0; i < NetworkHelper.servers.Length; i++)
+            {
+                replyTime = NetworkHelper.PingServer(NetworkHelper.servers[i]);
+                if (replyTime < 0)
+                {
+                    this.mainForm.ServerIcons[i].Image = Properties.Resources.IconError;
+                    this.mainForm.ServerLabels[i].Text = Properties.Resources.TextError;
+                    this.mainForm.Errors++;
+                }
+                else if (replyTime == 0)
+                {
+                    this.mainForm.ServerIcons[i].Image = Properties.Resources.IconWarning;
+                    this.mainForm.ServerLabels[i].Text = Properties.Resources.TextTimeOut;
+                    this.mainForm.Warnings++;
+                }
+                else
+                {
+                    this.mainForm.ServerIcons[i].Image = Properties.Resources.IconSuccess;
+                    this.mainForm.ServerLabels[i].Text = replyTime + " ms";
+                    this.mainForm.Success++;
+                }
+            }
+        }
+
+        private void CheckHostsFile()
+        {
+            this.mainForm.lblStatus.Text = "Checking Connection (hosts file) ...";
+            Application.DoEvents();
+
             int hosts = FileSystemHelper.CheckHostsFile();
             if (hosts == 0)
             {
-                this.mainForm.picHosts.Image = Properties.Resources.success;
+                this.mainForm.picHosts.Image = Properties.Resources.IconSuccess;
                 this.mainForm.lblHosts.Visible = false;
                 this.mainForm.linkHosts.Enabled = true;
                 this.mainForm.Success++;
             }
             else if (hosts == -1)
             {
-                this.mainForm.picHosts.Image = Properties.Resources.warning;
+                this.mainForm.picHosts.Image = Properties.Resources.IconWarning;
                 this.mainForm.lblHosts.Text = "Could not find hosts file";
                 this.mainForm.linkHosts.Enabled = false;
                 this.mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picHosts.Image = Properties.Resources.warning;
+                this.mainForm.picHosts.Image = Properties.Resources.IconWarning;
                 this.mainForm.lblHosts.Text = hosts + " suspicious entries found";
                 this.mainForm.lblHosts.Visible = true;
                 this.mainForm.linkHosts.Enabled = true;
@@ -150,6 +228,9 @@ namespace BFP4F_Troubleshooting
 
         void DirectXTest()
         {
+            this.mainForm.lblStatus.Text = "Checking Prerequisites (DirectX) ...";
+            Application.DoEvents();
+
             try
             {
                 HardwareHelper.Initialize(this.mainForm);
@@ -158,13 +239,13 @@ namespace BFP4F_Troubleshooting
             
             if (Program.dxFailed)
             {
-                this.mainForm.picDX.Image = Properties.Resources.error;
+                this.mainForm.picDX.Image = Properties.Resources.IconError;
                 this.mainForm.lblDriverUrl.Enabled = false;
                 this.mainForm.Errors++;
                 return;
             }
                 
-            this.mainForm.picDX.Image = Properties.Resources.success;
+            this.mainForm.picDX.Image = Properties.Resources.IconSuccess;
             this.mainForm.lblDriverUrl.Enabled = true;
             this.mainForm.Success++;
 
@@ -173,6 +254,9 @@ namespace BFP4F_Troubleshooting
 
         void NetFxTest()
         {
+            this.mainForm.lblStatus.Text = "Checking Prerequisites (.NET Frameworks) ...";
+            Application.DoEvents();
+
             bool netfx35 = false;
             bool netfx35sp1 = false;
             bool netfx40 = false;
@@ -183,35 +267,35 @@ namespace BFP4F_Troubleshooting
 
             if (netfx35 && netfx35sp1)
             {
-                this.mainForm.picNet35.Image = Properties.Resources.success;
+                this.mainForm.picNet35.Image = Properties.Resources.IconSuccess;
                 this.mainForm.lblNetFx35sp1.Visible = false;
                 this.mainForm.Success++;
             }
             else if (netfx35)
             {
-                this.mainForm.picNet35.Image = Properties.Resources.warning;
-                this.mainForm.lblNetFx35sp1.Text = "SP1 missing";
+                this.mainForm.picNet35.Image = Properties.Resources.IconWarning;
+                this.mainForm.lblNetFx35sp1.Text = Properties.Resources.TextMissingSP1;
                 this.mainForm.lblNetFx35sp1.Visible = true;
                 this.mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picNet35.Image = Properties.Resources.error;
-                this.mainForm.lblNetFx35sp1.Text = "missing";
+                this.mainForm.picNet35.Image = Properties.Resources.IconError;
+                this.mainForm.lblNetFx35sp1.Text = Properties.Resources.TextMissing;
                 this.mainForm.lblNetFx35sp1.Visible = true;
                 this.mainForm.Errors++;
             }
 
             if (netfx40)
             {
-                this.mainForm.picNet40.Image = Properties.Resources.success;
+                this.mainForm.picNet40.Image = Properties.Resources.IconSuccess;
                 this.mainForm.lblNetFx40.Visible = false;
                 this.mainForm.Success++;
             }
             else
             {
-                this.mainForm.picNet40.Image = Properties.Resources.error;
-                this.mainForm.lblNetFx40.Text = "missing";
+                this.mainForm.picNet40.Image = Properties.Resources.IconError;
+                this.mainForm.lblNetFx40.Text = Properties.Resources.TextMissing;
                 this.mainForm.lblNetFx40.Visible = true;
                 this.mainForm.Errors++;
             }
@@ -219,6 +303,9 @@ namespace BFP4F_Troubleshooting
 
         void VCRTTest()
         {
+            this.mainForm.lblStatus.Text = "Checking Prerequisites (Visual C++ Runtimes) ...";
+            Application.DoEvents();
+
             bool vcrt2005 = false;
             bool vcrt2005sp1 = false;
             bool vcrt2008 = false;
@@ -231,42 +318,42 @@ namespace BFP4F_Troubleshooting
 
             if (vcrt2005 && vcrt2005sp1)
             {
-                this.mainForm.picVC2005.Image = Properties.Resources.success;
+                this.mainForm.picVC2005.Image = Properties.Resources.IconSuccess;
                 this.mainForm.lblVC2005sp1.Visible = false;
                 this.mainForm.Success++;
             }
             else if (vcrt2005)
             {
-                this.mainForm.picVC2005.Image = Properties.Resources.warning;
-                this.mainForm.lblVC2005sp1.Text = "SP1 missing";
+                this.mainForm.picVC2005.Image = Properties.Resources.IconWarning;
+                this.mainForm.lblVC2005sp1.Text = Properties.Resources.TextMissingSP1;
                 this.mainForm.lblVC2005sp1.Visible = true;
                 this.mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picVC2005.Image = Properties.Resources.error;
-                this.mainForm.lblVC2005sp1.Text = "missing";
+                this.mainForm.picVC2005.Image = Properties.Resources.IconError;
+                this.mainForm.lblVC2005sp1.Text = Properties.Resources.TextMissing;
                 this.mainForm.lblVC2005sp1.Visible = true;
                 this.mainForm.Errors++;
             }
 
             if (vcrt2008 && vcrt2008sp1)
             {
-                this.mainForm.picVC2008.Image = Properties.Resources.success;
+                this.mainForm.picVC2008.Image = Properties.Resources.IconSuccess;
                 this.mainForm.lblVC2008sp1.Visible = false;
                 this.mainForm.Success++;
             }
             else if (vcrt2008)
             {
-                this.mainForm.picVC2008.Image = Properties.Resources.warning;
-                this.mainForm.lblVC2008sp1.Text = "SP1 missing";
+                this.mainForm.picVC2008.Image = Properties.Resources.IconWarning;
+                this.mainForm.lblVC2008sp1.Text = Properties.Resources.TextMissingSP1;
                 this.mainForm.lblVC2008sp1.Visible = true;
                 this.mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picVC2008.Image = Properties.Resources.error;
-                this.mainForm.lblVC2008sp1.Text = "missing";
+                this.mainForm.picVC2008.Image = Properties.Resources.IconError;
+                this.mainForm.lblVC2008sp1.Text = Properties.Resources.TextMissing;
                 this.mainForm.lblVC2008sp1.Visible = true;
                 this.mainForm.Errors++;
             }

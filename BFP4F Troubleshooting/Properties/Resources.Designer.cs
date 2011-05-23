@@ -60,24 +60,69 @@ namespace BFP4F_Troubleshooting.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap error {
+        internal static System.Drawing.Bitmap IconError {
             get {
-                object obj = ResourceManager.GetObject("error", resourceCulture);
+                object obj = ResourceManager.GetObject("IconError", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap success {
+        internal static System.Drawing.Bitmap IconSuccess {
             get {
-                object obj = ResourceManager.GetObject("success", resourceCulture);
+                object obj = ResourceManager.GetObject("IconSuccess", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap warning {
+        internal static System.Drawing.Bitmap IconWarning {
             get {
-                object obj = ResourceManager.GetObject("warning", resourceCulture);
+                object obj = ResourceManager.GetObject("IconWarning", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error!.
+        /// </summary>
+        internal static string TextError {
+            get {
+                return ResourceManager.GetString("TextError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing!.
+        /// </summary>
+        internal static string TextMissing {
+            get {
+                return ResourceManager.GetString("TextMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SP1 missing.
+        /// </summary>
+        internal static string TextMissingSP1 {
+            get {
+                return ResourceManager.GetString("TextMissingSP1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timed out!.
+        /// </summary>
+        internal static string TextTimeOut {
+            get {
+                return ResourceManager.GetString("TextTimeOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        internal static string TextUnknown {
+            get {
+                return ResourceManager.GetString("TextUnknown", resourceCulture);
             }
         }
     }

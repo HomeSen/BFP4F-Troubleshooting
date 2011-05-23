@@ -31,6 +31,9 @@ namespace BFP4F_Troubleshooting
         const string REG_VAL_PATH = @"InstallPath";
         const string REG_VAL_SP = @"SP";
 
+        const string REG_AUTOMATIC_PROXY = @"Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections";
+        const string REG_AUTOMATIC_PROXY_VAL = @"DefaultConnectionSettings"; // subtract 8 from 9th byte to disable
+
 
         public static bool NetFrameworkInstalled(NETFX version)
         {
@@ -153,6 +156,30 @@ namespace BFP4F_Troubleshooting
             }
 
             return result;
+        }
+
+        public static void DisableAutomaticProxy()
+        {
+            try
+            {
+                RegistryKey key = Registry.CurrentUser;
+                key = key.OpenSubKey(REG_AUTOMATIC_PROXY, true);
+                byte[] value = (byte[])key.GetValue(REG_AUTOMATIC_PROXY_VAL);
+                if (value[8] > 8)
+                {
+                    value[8] -= 8;
+                    key.SetValue(REG_AUTOMATIC_PROXY_VAL, value);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    "An error occured while trying to disable \"Automatic Proxy Discovery\""
+                        + Environment.NewLine + Environment.NewLine + ex.ToString(),
+                    "Error",
+                    System.Windows.Forms.MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBoxIcon.Error);
+            }
         }
     }
 }
