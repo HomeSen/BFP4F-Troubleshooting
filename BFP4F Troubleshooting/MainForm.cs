@@ -192,6 +192,16 @@ namespace BFP4F_Troubleshooting
             System.Diagnostics.Process.Start("inetcpl.cpl");
         }
 
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this._controller.RunPunkbusterService();
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.evenbalance.com/index.php?page=pbsetup.php");
+        }
+
         #endregion
     }
 }

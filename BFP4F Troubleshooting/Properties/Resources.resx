@@ -136,6 +136,9 @@
   <data name="TextMissingSP1" xml:space="preserve">
     <value>SP1 missing</value>
   </data>
+  <data name="TextNotFound" xml:space="preserve">
+    <value>Not installed</value>
+  </data>
   <data name="TextTimeOut" xml:space="preserve">
     <value>Timed out!</value>
   </data>

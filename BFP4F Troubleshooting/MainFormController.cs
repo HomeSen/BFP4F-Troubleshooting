@@ -7,16 +7,59 @@ namespace BFP4F_Troubleshooting
 {
     class MainFormController
     {
+        #region Fields
+
         MainForm mainForm = null;
+        bool gameInstalled = false;
+
         const int MIN_PIXELSHADER = 2;
         const int MIN_VIDEOMEMORY = 256;
         const int MIN_CPU = 1700;
-        const int MIN_RAM = 512;
+        const int MIN_RAM = 512; 
+        
+        #endregion
+
+
+        #region Constructor
 
         public MainFormController(Form mainForm)
         {
             this.mainForm = (MainForm)mainForm;
+
+            string path = RegistryHelper.GetGamePath();
+            if (String.IsNullOrEmpty(path))
+            {
+                this.mainForm.statusGamePath.Text = Properties.Resources.TextNotFound;
+                this.mainForm.statusGamePath.IsLink = false;
+                this.gameInstalled = false;
+            }
+            else
+            {
+                this.mainForm.statusGamePath.Text = path;
+                this.mainForm.statusGamePath.IsLink = true;
+                this.mainForm.statusGamePath.Click += new EventHandler(delegate(object o, EventArgs e)
+                    { System.Diagnostics.Process.Start(path); });
+                this.gameInstalled = true;
+            }
         }
+
+        #endregion
+        
+
+        public void RunTests()
+        {
+            NetFxTest();
+            VCRTTest();
+            DirectXTest();
+            ConnectionTest();
+            HardwareTest();
+
+            this.mainForm.lblStatus.Text = "Finished testing.";
+            Application.DoEvents();
+        }
+
+
+        #region Hardware Tests
 
         private void GetVideoDevice()
         {
@@ -80,18 +123,6 @@ namespace BFP4F_Troubleshooting
                 this.mainForm.picVideoMem.Image = Properties.Resources.IconError;
                 this.mainForm.Errors++;
             }
-        }
-
-        public void RunTests()
-        {
-            NetFxTest();
-            VCRTTest();
-            DirectXTest();
-            ConnectionTest();
-            HardwareTest();
-
-            this.mainForm.lblStatus.Text = "Finished testing.";
-            Application.DoEvents();
         }
 
         private void HardwareTest()
@@ -159,6 +190,11 @@ namespace BFP4F_Troubleshooting
             }
         }
 
+        #endregion
+
+
+        #region Connection Tests
+
         private void ConnectionTest()
         {
             CheckHostsFile();
@@ -225,6 +261,11 @@ namespace BFP4F_Troubleshooting
                 this.mainForm.Warnings++;
             }
         }
+
+        #endregion
+
+
+        #region Prerequisites Tests
 
         void DirectXTest()
         {
@@ -358,5 +399,49 @@ namespace BFP4F_Troubleshooting
                 this.mainForm.Errors++;
             }
         }
+
+        #endregion
+
+
+        #region Miscellaneous
+
+        public void RunPunkbusterService()
+        {
+            string path = "";
+
+            if (this.gameInstalled == true)
+            {
+                path = this.mainForm.statusGamePath.Text;
+                if (path.EndsWith(@"\") == false)
+                    path += @"\";
+                path += "pbsvc_p4f.exe";
+            }
+            
+            if ((System.IO.File.Exists(path) == false) || (this.gameInstalled == false))
+            {
+                this.mainForm.lblStatus.Text = "Downloading \"pbsvc.exe\" ...";
+
+                path = Environment.GetEnvironmentVariable("TEMP");
+                if (path.EndsWith(@"\") == false)
+                    path += @"\";
+                path += "pbsvc.exe";
+
+                this.mainForm.lblStatus.Text = "Finished downloading.";
+
+                if (NetworkHelper.DownloadPbSvc(path) == false)
+                    return;
+            }
+
+            this.mainForm.lblStatus.Text = "Starting pbsvc.exe ...";
+            System.Diagnostics.Process.Start(path);
+            this.mainForm.lblStatus.Text = "Finished starting \"pbsvc.exe\" ...";
+        }
+
+        public void RunPunkbusterSetup()
+        {
+
+        }
+
+        #endregion
     }
 }

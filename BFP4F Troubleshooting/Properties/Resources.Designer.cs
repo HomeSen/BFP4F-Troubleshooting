@@ -109,6 +109,15 @@ namespace BFP4F_Troubleshooting.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not installed.
+        /// </summary>
+        internal static string TextNotFound {
+            get {
+                return ResourceManager.GetString("TextNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Timed out!.
         /// </summary>
         internal static string TextTimeOut {

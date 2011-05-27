@@ -19,6 +19,8 @@ namespace BFP4F_Troubleshooting
 
     internal class RegistryHelper
     {
+        #region Consts
+
         const string REG_NETFX20 = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727";
         const string REG_NETFX30 = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0";
         const string REG_NETFX35 = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5";
@@ -34,6 +36,13 @@ namespace BFP4F_Troubleshooting
         const string REG_AUTOMATIC_PROXY = @"Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections";
         const string REG_AUTOMATIC_PROXY_VAL = @"DefaultConnectionSettings"; // subtract 8 from 9th byte to disable
 
+        const string REG_BFP4F = @"SOFTWARE\Electronic Arts\EA Games\Battlefield Play4Free";
+        const string REG_BFP4F_VAL = @"Installation Dir";
+
+        #endregion
+
+
+        #region Frameworks
 
         public static bool NetFrameworkInstalled(NETFX version)
         {
@@ -158,6 +167,11 @@ namespace BFP4F_Troubleshooting
             return result;
         }
 
+        #endregion
+
+
+        #region InternetSettings
+
         public static void DisableAutomaticProxy()
         {
             try
@@ -181,5 +195,36 @@ namespace BFP4F_Troubleshooting
                     System.Windows.Forms.MessageBoxIcon.Error);
             }
         }
+
+        #endregion
+
+
+        #region GamePath
+
+        public static string GetGamePath()
+        {
+            string result = "";
+
+            try
+            {
+                RegistryKey key = Registry.LocalMachine;
+                key = key.OpenSubKey(REG_BFP4F);
+                if (key == null)
+                    return String.Empty;
+
+                object value = key.GetValue(REG_BFP4F_VAL);
+                if (value == null)
+                    result = String.Empty;
+                else
+                    result = value.ToString();
+
+                key.Close();
+            }
+            catch { }
+
+            return result;
+        }
+
+        #endregion
     }
 }
