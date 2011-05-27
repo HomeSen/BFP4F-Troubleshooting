@@ -437,11 +437,6 @@ namespace BFP4F_Troubleshooting
             this.mainForm.lblStatus.Text = "Finished starting \"pbsvc.exe\" ...";
         }
 
-        public void RunPunkbusterSetup()
-        {
-
-        }
-
         #endregion
     }
 }
