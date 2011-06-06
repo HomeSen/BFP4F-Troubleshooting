@@ -115,13 +115,13 @@ namespace BFP4F_Troubleshooting
             return result;
         }
 
-        public static int GetVideoMemory()
+        public static uint GetVideoMemory()
         {
-            int result = 0;
+            uint result = 0;
 
             try
             {
-                result = device.AvailableTextureMemory; // Bytes, rounded to nearest MiBytes value
+                result = (uint)device.AvailableTextureMemory; // Bytes, rounded to nearest MiBytes value
                 result /= 1024; // KiBytes
                 result /= 1024; // MiBytes
             }
@@ -255,6 +255,11 @@ namespace BFP4F_Troubleshooting
 
                 if (result.Trim().Length > 0)
                 {
+                    string architecture = WmiHelper.GetOsArchitecture();
+                    if (String.IsNullOrEmpty(architecture) == false)
+                    {
+                        result += " (" + architecture + ")";
+                    }
                     if (osInfo.ServicePack.Trim().Length > 0)
                     {
                         result += " " + osInfo.ServicePack;

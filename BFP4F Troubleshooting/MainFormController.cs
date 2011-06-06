@@ -90,11 +90,13 @@ namespace BFP4F_Troubleshooting
                 if (version.Major < MIN_PIXELSHADER)
                 {
                     this.mainForm.picPixelShader.Image = Properties.Resources.IconError;
+                    this.mainForm.picPixelShader.BorderStyle = BorderStyle.None;
                     this.mainForm.Errors++;
                 }
                 else
                 {
                     this.mainForm.picPixelShader.Image = Properties.Resources.IconSuccess;
+                    this.mainForm.picPixelShader.BorderStyle = BorderStyle.None;
                     this.mainForm.Success++;
                 }
             }
@@ -102,25 +104,29 @@ namespace BFP4F_Troubleshooting
             {
                 this.mainForm.lblPixelShader.Text = Properties.Resources.TextUnknown;
                 this.mainForm.picPixelShader.Image = Properties.Resources.IconWarning;
+                this.mainForm.picPixelShader.BorderStyle = BorderStyle.None;
                 this.mainForm.Warnings++;
             }
 
             // Get (combined) video memory
-            int videoMemory = HardwareHelper.GetVideoMemory();
+            uint videoMemory = HardwareHelper.GetVideoMemory();
             this.mainForm.lblVideoMem.Text = videoMemory + " MB";
             if (videoMemory > MIN_VIDEOMEMORY)
             {
                 this.mainForm.picVideoMem.Image = Properties.Resources.IconSuccess;
+                this.mainForm.picVideoMem.BorderStyle = BorderStyle.None;
                 this.mainForm.Success++;
             }
             else if (videoMemory == MIN_VIDEOMEMORY)
             {
                 this.mainForm.picVideoMem.Image = Properties.Resources.IconWarning;
+                this.mainForm.picVideoMem.BorderStyle = BorderStyle.None;
                 this.mainForm.Warnings++;
             }
             else
             {
                 this.mainForm.picVideoMem.Image = Properties.Resources.IconError;
+                this.mainForm.picVideoMem.BorderStyle = BorderStyle.None;
                 this.mainForm.Errors++;
             }
         }
@@ -146,17 +152,20 @@ namespace BFP4F_Troubleshooting
                 if ((cpuSpeed <= (MIN_CPU * 1.25)) && (logicalCpus <= 1))
                 {
                     this.mainForm.picCPU.Image = Properties.Resources.IconWarning;
+                    this.mainForm.picCPU.BorderStyle = BorderStyle.None;
                     this.mainForm.Warnings++;
                 }
                 else
                 {
                     this.mainForm.picCPU.Image = Properties.Resources.IconSuccess;
+                    this.mainForm.picCPU.BorderStyle = BorderStyle.None;
                     this.mainForm.Success++;
                 }
             }
             else
             {
                 this.mainForm.picCPU.Image = Properties.Resources.IconError;
+                this.mainForm.picCPU.BorderStyle = BorderStyle.None;
                 this.mainForm.lblCPU.Text = Properties.Resources.TextError;
                 this.mainForm.Errors++;
             }
@@ -169,22 +178,26 @@ namespace BFP4F_Troubleshooting
                 if (memory < MIN_RAM)
                 {
                     this.mainForm.picRAM.Image = Properties.Resources.IconError;
+                    this.mainForm.picRAM.BorderStyle = BorderStyle.None;
                     this.mainForm.Errors++;
                 }
                 else if ((memory >= MIN_RAM) && (memory <= (MIN_RAM * 2)))
                 {
                     this.mainForm.picRAM.Image = Properties.Resources.IconWarning;
+                    this.mainForm.picRAM.BorderStyle = BorderStyle.None;
                     this.mainForm.Warnings++;
                 }
                 else
                 {
                     this.mainForm.picRAM.Image = Properties.Resources.IconSuccess;
+                    this.mainForm.picRAM.BorderStyle = BorderStyle.None;
                     this.mainForm.Success++;
                 }
             }
             else
             {
                 this.mainForm.picRAM.Image = Properties.Resources.IconError;
+                this.mainForm.picRAM.BorderStyle = BorderStyle.None;
                 this.mainForm.lblRAM.Text = Properties.Resources.TextError;
                 this.mainForm.Errors++;
             }
@@ -214,18 +227,21 @@ namespace BFP4F_Troubleshooting
                 if (replyTime < 0)
                 {
                     this.mainForm.ServerIcons[i].Image = Properties.Resources.IconError;
+                    this.mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
                     this.mainForm.ServerLabels[i].Text = Properties.Resources.TextError;
                     this.mainForm.Errors++;
                 }
                 else if (replyTime == 0)
                 {
                     this.mainForm.ServerIcons[i].Image = Properties.Resources.IconWarning;
+                    this.mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
                     this.mainForm.ServerLabels[i].Text = Properties.Resources.TextTimeOut;
                     this.mainForm.Warnings++;
                 }
                 else
                 {
                     this.mainForm.ServerIcons[i].Image = Properties.Resources.IconSuccess;
+                    this.mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
                     this.mainForm.ServerLabels[i].Text = replyTime + " ms";
                     this.mainForm.Success++;
                 }
@@ -241,6 +257,7 @@ namespace BFP4F_Troubleshooting
             if (hosts == 0)
             {
                 this.mainForm.picHosts.Image = Properties.Resources.IconSuccess;
+                this.mainForm.picHosts.BorderStyle = BorderStyle.None;
                 this.mainForm.lblHosts.Visible = false;
                 this.mainForm.linkHosts.Enabled = true;
                 this.mainForm.Success++;
@@ -248,6 +265,7 @@ namespace BFP4F_Troubleshooting
             else if (hosts == -1)
             {
                 this.mainForm.picHosts.Image = Properties.Resources.IconWarning;
+                this.mainForm.picHosts.BorderStyle = BorderStyle.None;
                 this.mainForm.lblHosts.Text = "Could not find hosts file";
                 this.mainForm.linkHosts.Enabled = false;
                 this.mainForm.Warnings++;
@@ -255,6 +273,7 @@ namespace BFP4F_Troubleshooting
             else
             {
                 this.mainForm.picHosts.Image = Properties.Resources.IconWarning;
+                this.mainForm.picHosts.BorderStyle = BorderStyle.None;
                 this.mainForm.lblHosts.Text = hosts + " suspicious entries found";
                 this.mainForm.lblHosts.Visible = true;
                 this.mainForm.linkHosts.Enabled = true;
@@ -281,12 +300,14 @@ namespace BFP4F_Troubleshooting
             if (Program.dxFailed)
             {
                 this.mainForm.picDX.Image = Properties.Resources.IconError;
+                this.mainForm.picDX.BorderStyle = BorderStyle.None;
                 this.mainForm.lblDriverUrl.Enabled = false;
                 this.mainForm.Errors++;
                 return;
             }
-                
+
             this.mainForm.picDX.Image = Properties.Resources.IconSuccess;
+            this.mainForm.picDX.BorderStyle = BorderStyle.None;
             this.mainForm.lblDriverUrl.Enabled = true;
             this.mainForm.Success++;
 
@@ -309,12 +330,14 @@ namespace BFP4F_Troubleshooting
             if (netfx35 && netfx35sp1)
             {
                 this.mainForm.picNet35.Image = Properties.Resources.IconSuccess;
+                this.mainForm.picNet35.BorderStyle = BorderStyle.None;
                 this.mainForm.lblNetFx35sp1.Visible = false;
                 this.mainForm.Success++;
             }
             else if (netfx35)
             {
                 this.mainForm.picNet35.Image = Properties.Resources.IconWarning;
+                this.mainForm.picNet35.BorderStyle = BorderStyle.None;
                 this.mainForm.lblNetFx35sp1.Text = Properties.Resources.TextMissingSP1;
                 this.mainForm.lblNetFx35sp1.Visible = true;
                 this.mainForm.Warnings++;
@@ -322,6 +345,7 @@ namespace BFP4F_Troubleshooting
             else
             {
                 this.mainForm.picNet35.Image = Properties.Resources.IconError;
+                this.mainForm.picNet35.BorderStyle = BorderStyle.None;
                 this.mainForm.lblNetFx35sp1.Text = Properties.Resources.TextMissing;
                 this.mainForm.lblNetFx35sp1.Visible = true;
                 this.mainForm.Errors++;
@@ -330,12 +354,14 @@ namespace BFP4F_Troubleshooting
             if (netfx40)
             {
                 this.mainForm.picNet40.Image = Properties.Resources.IconSuccess;
+                this.mainForm.picNet40.BorderStyle = BorderStyle.None;
                 this.mainForm.lblNetFx40.Visible = false;
                 this.mainForm.Success++;
             }
             else
             {
                 this.mainForm.picNet40.Image = Properties.Resources.IconError;
+                this.mainForm.picNet40.BorderStyle = BorderStyle.None;
                 this.mainForm.lblNetFx40.Text = Properties.Resources.TextMissing;
                 this.mainForm.lblNetFx40.Visible = true;
                 this.mainForm.Errors++;
@@ -360,12 +386,14 @@ namespace BFP4F_Troubleshooting
             if (vcrt2005 && vcrt2005sp1)
             {
                 this.mainForm.picVC2005.Image = Properties.Resources.IconSuccess;
+                this.mainForm.picVC2005.BorderStyle = BorderStyle.None;
                 this.mainForm.lblVC2005sp1.Visible = false;
                 this.mainForm.Success++;
             }
             else if (vcrt2005)
             {
                 this.mainForm.picVC2005.Image = Properties.Resources.IconWarning;
+                this.mainForm.picVC2005.BorderStyle = BorderStyle.None;
                 this.mainForm.lblVC2005sp1.Text = Properties.Resources.TextMissingSP1;
                 this.mainForm.lblVC2005sp1.Visible = true;
                 this.mainForm.Warnings++;
@@ -373,6 +401,7 @@ namespace BFP4F_Troubleshooting
             else
             {
                 this.mainForm.picVC2005.Image = Properties.Resources.IconError;
+                this.mainForm.picVC2005.BorderStyle = BorderStyle.None;
                 this.mainForm.lblVC2005sp1.Text = Properties.Resources.TextMissing;
                 this.mainForm.lblVC2005sp1.Visible = true;
                 this.mainForm.Errors++;
@@ -381,12 +410,14 @@ namespace BFP4F_Troubleshooting
             if (vcrt2008 && vcrt2008sp1)
             {
                 this.mainForm.picVC2008.Image = Properties.Resources.IconSuccess;
+                this.mainForm.picVC2008.BorderStyle = BorderStyle.None;
                 this.mainForm.lblVC2008sp1.Visible = false;
                 this.mainForm.Success++;
             }
             else if (vcrt2008)
             {
                 this.mainForm.picVC2008.Image = Properties.Resources.IconWarning;
+                this.mainForm.picVC2008.BorderStyle = BorderStyle.None;
                 this.mainForm.lblVC2008sp1.Text = Properties.Resources.TextMissingSP1;
                 this.mainForm.lblVC2008sp1.Visible = true;
                 this.mainForm.Warnings++;
@@ -394,6 +425,7 @@ namespace BFP4F_Troubleshooting
             else
             {
                 this.mainForm.picVC2008.Image = Properties.Resources.IconError;
+                this.mainForm.picVC2008.BorderStyle = BorderStyle.None;
                 this.mainForm.lblVC2008sp1.Text = Properties.Resources.TextMissing;
                 this.mainForm.lblVC2008sp1.Visible = true;
                 this.mainForm.Errors++;
