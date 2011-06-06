@@ -44,6 +44,7 @@
             System.Windows.Forms.Label label24;
             System.Windows.Forms.Label label14;
             System.Windows.Forms.Label label13;
+            System.Windows.Forms.Label label31;
             System.Windows.Forms.GroupBox groupBox3;
             System.Windows.Forms.Label label22;
             System.Windows.Forms.Label label20;
@@ -68,7 +69,6 @@
             System.Windows.Forms.Label label32;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
-            System.Windows.Forms.Label label31;
             this.tabPrereq = new System.Windows.Forms.TabPage();
             this.picDX = new System.Windows.Forms.PictureBox();
             this.picVC2008 = new System.Windows.Forms.PictureBox();
@@ -103,6 +103,12 @@
             this.linkHosts = new System.Windows.Forms.LinkLabel();
             this.picHosts = new System.Windows.Forms.PictureBox();
             this.tabConnection2 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.linkLabel11 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
+            this.linkAutoProxy = new System.Windows.Forms.LinkLabel();
             this.tabHardware = new System.Windows.Forms.TabPage();
             this.picRAM = new System.Windows.Forms.PictureBox();
             this.picCPU = new System.Windows.Forms.PictureBox();
@@ -134,12 +140,8 @@
             this.statusError = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusGamePath = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
-            this.linkAutoProxy = new System.Windows.Forms.LinkLabel();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel11 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel12 = new System.Windows.Forms.LinkLabel();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             tabControl1 = new System.Windows.Forms.TabControl();
             label12 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -156,6 +158,7 @@
             label24 = new System.Windows.Forms.Label();
             label14 = new System.Windows.Forms.Label();
             label13 = new System.Windows.Forms.Label();
+            label31 = new System.Windows.Forms.Label();
             groupBox3 = new System.Windows.Forms.GroupBox();
             label22 = new System.Windows.Forms.Label();
             label20 = new System.Windows.Forms.Label();
@@ -179,7 +182,6 @@
             label32 = new System.Windows.Forms.Label();
             toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            label31 = new System.Windows.Forms.Label();
             tabControl1.SuspendLayout();
             this.tabPrereq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picDX)).BeginInit();
@@ -198,6 +200,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picServerMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHosts)).BeginInit();
             this.tabConnection2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.tabHardware.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picRAM)).BeginInit();
@@ -209,8 +213,6 @@
             groupBox2.SuspendLayout();
             this.tabCredits.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -771,6 +773,81 @@
             this.tabConnection2.TabIndex = 5;
             this.tabConnection2.Text = "Connection II";
             this.tabConnection2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.linkLabel12);
+            this.groupBox6.Controls.Add(this.linkLabel11);
+            this.groupBox6.Controls.Add(this.linkLabel10);
+            this.groupBox6.Location = new System.Drawing.Point(6, 159);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(542, 131);
+            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "PunkBuster";
+            // 
+            // linkLabel11
+            // 
+            this.linkLabel11.AutoSize = true;
+            this.linkLabel11.Location = new System.Drawing.Point(6, 60);
+            this.linkLabel11.Name = "linkLabel11";
+            this.linkLabel11.Size = new System.Drawing.Size(149, 20);
+            this.linkLabel11.TabIndex = 13;
+            this.linkLabel11.TabStop = true;
+            this.linkLabel11.Text = "Update PunkBuster";
+            this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel11_LinkClicked);
+            // 
+            // linkLabel10
+            // 
+            this.linkLabel10.AutoSize = true;
+            this.linkLabel10.Location = new System.Drawing.Point(6, 22);
+            this.linkLabel10.Name = "linkLabel10";
+            this.linkLabel10.Size = new System.Drawing.Size(248, 20);
+            this.linkLabel10.TabIndex = 12;
+            this.linkLabel10.TabStop = true;
+            this.linkLabel10.Text = "Check/Repair PunkBuster Service";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.linkLabel8);
+            this.groupBox5.Controls.Add(label31);
+            this.groupBox5.Controls.Add(this.linkAutoProxy);
+            this.groupBox5.Location = new System.Drawing.Point(6, 15);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(542, 138);
+            this.groupBox5.TabIndex = 12;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Internet Settings";
+            // 
+            // linkLabel8
+            // 
+            this.linkLabel8.AutoSize = true;
+            this.linkLabel8.Location = new System.Drawing.Point(6, 100);
+            this.linkLabel8.Name = "linkLabel8";
+            this.linkLabel8.Size = new System.Drawing.Size(183, 20);
+            this.linkLabel8.TabIndex = 13;
+            this.linkLabel8.TabStop = true;
+            this.linkLabel8.Text = "Open \"Internet Settings\"";
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Location = new System.Drawing.Point(6, 42);
+            label31.Name = "label31";
+            label31.Size = new System.Drawing.Size(533, 40);
+            label31.TabIndex = 12;
+            label31.Text = "Disabling the \"Automatic Proxy Discovery\" can speed up the download and\r\nloading " +
+                "time of the game.";
+            // 
+            // linkAutoProxy
+            // 
+            this.linkAutoProxy.AutoSize = true;
+            this.linkAutoProxy.Location = new System.Drawing.Point(6, 22);
+            this.linkAutoProxy.Name = "linkAutoProxy";
+            this.linkAutoProxy.Size = new System.Drawing.Size(264, 20);
+            this.linkAutoProxy.TabIndex = 11;
+            this.linkAutoProxy.TabStop = true;
+            this.linkAutoProxy.Text = "Disable \"Automatic Proxy Discovery\"";
             // 
             // tabHardware
             // 
@@ -1340,79 +1417,20 @@
             this.lblStatus.TabIndex = 4;
             this.lblStatus.Text = "Waiting to start tests";
             // 
-            // groupBox5
+            // linkLabel12
             // 
-            this.groupBox5.Controls.Add(this.linkLabel8);
-            this.groupBox5.Controls.Add(label31);
-            this.groupBox5.Controls.Add(this.linkAutoProxy);
-            this.groupBox5.Location = new System.Drawing.Point(6, 15);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(542, 138);
-            this.groupBox5.TabIndex = 12;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Internet Settings";
+            this.linkLabel12.AutoSize = true;
+            this.linkLabel12.Location = new System.Drawing.Point(6, 98);
+            this.linkLabel12.Name = "linkLabel12";
+            this.linkLabel12.Size = new System.Drawing.Size(248, 20);
+            this.linkLabel12.TabIndex = 14;
+            this.linkLabel12.TabStop = true;
+            this.linkLabel12.Text = "Open PunkBuster logfile (pbcl.log)";
+            this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel12_LinkClicked);
             // 
-            // linkLabel8
+            // folderBrowserDialog1
             // 
-            this.linkLabel8.AutoSize = true;
-            this.linkLabel8.Location = new System.Drawing.Point(6, 100);
-            this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(183, 20);
-            this.linkLabel8.TabIndex = 13;
-            this.linkLabel8.TabStop = true;
-            this.linkLabel8.Text = "Open \"Internet Settings\"";
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Location = new System.Drawing.Point(6, 42);
-            label31.Name = "label31";
-            label31.Size = new System.Drawing.Size(533, 40);
-            label31.TabIndex = 12;
-            label31.Text = "Disabling the \"Automatic Proxy Discovery\" can speed up the download and\r\nloading " +
-                "time of the game.";
-            // 
-            // linkAutoProxy
-            // 
-            this.linkAutoProxy.AutoSize = true;
-            this.linkAutoProxy.Location = new System.Drawing.Point(6, 22);
-            this.linkAutoProxy.Name = "linkAutoProxy";
-            this.linkAutoProxy.Size = new System.Drawing.Size(264, 20);
-            this.linkAutoProxy.TabIndex = 11;
-            this.linkAutoProxy.TabStop = true;
-            this.linkAutoProxy.Text = "Disable \"Automatic Proxy Discovery\"";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.linkLabel11);
-            this.groupBox6.Controls.Add(this.linkLabel10);
-            this.groupBox6.Location = new System.Drawing.Point(6, 159);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(542, 100);
-            this.groupBox6.TabIndex = 13;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "PunkBuster";
-            // 
-            // linkLabel10
-            // 
-            this.linkLabel10.AutoSize = true;
-            this.linkLabel10.Location = new System.Drawing.Point(6, 22);
-            this.linkLabel10.Name = "linkLabel10";
-            this.linkLabel10.Size = new System.Drawing.Size(248, 20);
-            this.linkLabel10.TabIndex = 12;
-            this.linkLabel10.TabStop = true;
-            this.linkLabel10.Text = "Check/Repair PunkBuster Service";
-            // 
-            // linkLabel11
-            // 
-            this.linkLabel11.AutoSize = true;
-            this.linkLabel11.Location = new System.Drawing.Point(6, 60);
-            this.linkLabel11.Name = "linkLabel11";
-            this.linkLabel11.Size = new System.Drawing.Size(149, 20);
-            this.linkLabel11.TabIndex = 13;
-            this.linkLabel11.TabStop = true;
-            this.linkLabel11.Text = "Update PunkBuster";
-            this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel11_LinkClicked);
+            this.folderBrowserDialog1.ShowNewFolderButton = false;
             // 
             // MainForm
             // 
@@ -1451,6 +1469,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picServerMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHosts)).EndInit();
             this.tabConnection2.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.tabHardware.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
@@ -1467,10 +1489,6 @@
             this.tabCredits.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1549,6 +1567,8 @@
         private System.Windows.Forms.LinkLabel linkLabel8;
         private System.Windows.Forms.LinkLabel linkAutoProxy;
         private System.Windows.Forms.LinkLabel linkLabel11;
+        private System.Windows.Forms.LinkLabel linkLabel12;
+        internal System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

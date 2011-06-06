@@ -202,6 +202,11 @@ namespace BFP4F_Troubleshooting
             System.Diagnostics.Process.Start("http://www.evenbalance.com/index.php?page=pbsetup.php");
         }
 
+        private void linkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this._controller.OpenPbcl();
+        }
+
         #endregion
     }
 }

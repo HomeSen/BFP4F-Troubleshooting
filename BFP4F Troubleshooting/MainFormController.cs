@@ -469,6 +469,39 @@ namespace BFP4F_Troubleshooting
             this.mainForm.lblStatus.Text = "Finished starting \"pbsvc.exe\" ...";
         }
 
+        public void OpenPbcl()
+        {
+            string path = "";
+            if (this.gameInstalled)
+            {
+                path = RegistryHelper.GetGamePath();
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("It seems like the game is not installed."
+                    + Environment.NewLine + Environment.NewLine
+                    + "Do you want to manually select the folder where you installed the game to?",
+                    "Not installed", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.No)
+                    return;
+
+                result = this.mainForm.folderBrowserDialog1.ShowDialog(this.mainForm);
+                if (result == DialogResult.OK)
+                    path = this.mainForm.folderBrowserDialog1.SelectedPath;
+                else
+                    return;
+            }
+
+            path = FileSystemHelper.GetPbclPath(path);
+            if (String.IsNullOrEmpty(path))
+            {
+                MessageBox.Show("Could not find PunkBuster logfile: pbcl.log", "Error");
+                return;
+            }
+
+            System.Diagnostics.Process.Start("notepad.exe", path);
+        }
+
         #endregion
     }
 }

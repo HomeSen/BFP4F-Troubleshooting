@@ -7,6 +7,14 @@ namespace BFP4F_Troubleshooting
 {
     class FileSystemHelper
     {
+        #region Fields
+
+        const string PB_CHANGE_HOMEPATH_TEXT = "Changing PunkBuster homepath to";
+        const string PB_RESOLVE_MASTER_TEXT = "Attempting to resolve";
+
+        #endregion
+        
+        
         #region Hosts file
 
         public static int CheckHostsFile()
@@ -117,6 +125,66 @@ namespace BFP4F_Troubleshooting
                 File.Move(path, path + "." + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
             }
             catch { }
+        }
+
+        #endregion
+
+
+        #region PunkBuster
+
+        public static string GetPbclPath(string gamePath)
+        {
+            if (String.IsNullOrEmpty(gamePath))
+                return String.Empty;
+
+            string path = Path.Combine(gamePath, @"pb\pbcl.log");
+
+            if (File.Exists(path) == false)
+                return String.Empty;
+
+            BackwardReader backwardReader = new BackwardReader(path);
+            while (backwardReader.SOF == false)
+            {
+                string line = backwardReader.ReadLine();
+                if (line.Contains(PB_CHANGE_HOMEPATH_TEXT))
+                {
+                    path = GetNewPbHomePath(line);
+                    break;
+                }
+
+                if (line.Contains(PB_RESOLVE_MASTER_TEXT))
+                    break;
+            }
+
+            backwardReader.Close();
+            backwardReader = null;
+            
+            return path;
+        }
+
+        private static string GetNewPbHomePath(string line)
+        {
+            string result = String.Empty;
+            if (String.IsNullOrEmpty(line))
+                return result;
+
+            int pos = line.IndexOf(PB_CHANGE_HOMEPATH_TEXT);
+            if (pos == -1)
+                return String.Empty;
+
+            pos += PB_CHANGE_HOMEPATH_TEXT.Length;
+            if (pos > line.Length)
+                return String.Empty;
+
+            result = line.Substring(pos).Trim();
+            result = result.Replace("[", "");
+            result = result.Replace("]", "");
+            result = result.Trim();
+
+            if (String.IsNullOrEmpty(result) == false)
+                result = Path.Combine(result, "pbcl.log");
+
+            return result;
         }
 
         #endregion
