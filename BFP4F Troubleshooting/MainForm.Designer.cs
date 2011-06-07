@@ -69,6 +69,8 @@
             System.Windows.Forms.Label label32;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
             System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+            System.Windows.Forms.Label label33;
+            System.Windows.Forms.Label label34;
             this.tabPrereq = new System.Windows.Forms.TabPage();
             this.picDX = new System.Windows.Forms.PictureBox();
             this.picVC2008 = new System.Windows.Forms.PictureBox();
@@ -104,6 +106,7 @@
             this.picHosts = new System.Windows.Forms.PictureBox();
             this.tabConnection2 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -140,8 +143,9 @@
             this.statusError = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusGamePath = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.lblVideoMemDedicated = new System.Windows.Forms.Label();
+            this.linkLabel13 = new System.Windows.Forms.LinkLabel();
             tabControl1 = new System.Windows.Forms.TabControl();
             label12 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
@@ -182,6 +186,8 @@
             label32 = new System.Windows.Forms.Label();
             toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            label33 = new System.Windows.Forms.Label();
+            label34 = new System.Windows.Forms.Label();
             tabControl1.SuspendLayout();
             this.tabPrereq.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picDX)).BeginInit();
@@ -786,6 +792,17 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "PunkBuster";
             // 
+            // linkLabel12
+            // 
+            this.linkLabel12.AutoSize = true;
+            this.linkLabel12.Location = new System.Drawing.Point(6, 98);
+            this.linkLabel12.Name = "linkLabel12";
+            this.linkLabel12.Size = new System.Drawing.Size(248, 20);
+            this.linkLabel12.TabIndex = 14;
+            this.linkLabel12.TabStop = true;
+            this.linkLabel12.Text = "Open PunkBuster logfile (pbcl.log)";
+            this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel12_LinkClicked);
+            // 
             // linkLabel11
             // 
             this.linkLabel11.AutoSize = true;
@@ -872,9 +889,9 @@
             groupBox3.Controls.Add(label22);
             groupBox3.Controls.Add(this.label21);
             groupBox3.Controls.Add(label20);
-            groupBox3.Location = new System.Drawing.Point(6, 202);
+            groupBox3.Location = new System.Drawing.Point(6, 252);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new System.Drawing.Size(542, 157);
+            groupBox3.Size = new System.Drawing.Size(542, 107);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
             groupBox3.Text = "System";
@@ -955,6 +972,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(this.lblVideoMemDedicated);
+            groupBox1.Controls.Add(label33);
             groupBox1.Controls.Add(this.picVideoMem);
             groupBox1.Controls.Add(this.lblVideoMem);
             groupBox1.Controls.Add(label15);
@@ -972,7 +991,7 @@
             groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             groupBox1.Location = new System.Drawing.Point(6, 21);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(542, 175);
+            groupBox1.Size = new System.Drawing.Size(542, 212);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "Video device";
@@ -980,7 +999,7 @@
             // picVideoMem
             // 
             this.picVideoMem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picVideoMem.Location = new System.Drawing.Point(156, 144);
+            this.picVideoMem.Location = new System.Drawing.Point(210, 144);
             this.picVideoMem.Name = "picVideoMem";
             this.picVideoMem.Size = new System.Drawing.Size(20, 20);
             this.picVideoMem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -990,7 +1009,7 @@
             // lblVideoMem
             // 
             this.lblVideoMem.AutoSize = true;
-            this.lblVideoMem.Location = new System.Drawing.Point(182, 144);
+            this.lblVideoMem.Location = new System.Drawing.Point(236, 144);
             this.lblVideoMem.Name = "lblVideoMem";
             this.lblVideoMem.Size = new System.Drawing.Size(76, 20);
             this.lblVideoMem.TabIndex = 13;
@@ -1001,15 +1020,15 @@
             label15.AutoSize = true;
             label15.Location = new System.Drawing.Point(6, 144);
             label15.Name = "label15";
-            label15.Size = new System.Drawing.Size(110, 20);
+            label15.Size = new System.Drawing.Size(193, 20);
             label15.TabIndex = 12;
-            label15.Text = "VideoMemory:";
+            label15.Text = "VideoMemory (combined):";
             // 
             // picPixelShader
             // 
             this.picPixelShader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picPixelShader.InitialImage = null;
-            this.picPixelShader.Location = new System.Drawing.Point(156, 118);
+            this.picPixelShader.Location = new System.Drawing.Point(210, 118);
             this.picPixelShader.Name = "picPixelShader";
             this.picPixelShader.Size = new System.Drawing.Size(20, 20);
             this.picPixelShader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1020,7 +1039,7 @@
             // 
             this.lblPixelShader.AutoSize = true;
             this.lblPixelShader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPixelShader.Location = new System.Drawing.Point(182, 118);
+            this.lblPixelShader.Location = new System.Drawing.Point(236, 118);
             this.lblPixelShader.Name = "lblPixelShader";
             this.lblPixelShader.Size = new System.Drawing.Size(76, 20);
             this.lblPixelShader.TabIndex = 10;
@@ -1040,9 +1059,9 @@
             // 
             this.lblDriverUrl.Enabled = false;
             this.lblDriverUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDriverUrl.Location = new System.Drawing.Point(152, 94);
+            this.lblDriverUrl.Location = new System.Drawing.Point(206, 94);
             this.lblDriverUrl.Name = "lblDriverUrl";
-            this.lblDriverUrl.Size = new System.Drawing.Size(384, 20);
+            this.lblDriverUrl.Size = new System.Drawing.Size(334, 20);
             this.lblDriverUrl.TabIndex = 7;
             this.lblDriverUrl.TabStop = true;
             this.lblDriverUrl.Text = "Unknown";
@@ -1062,7 +1081,7 @@
             // 
             this.lblDriverDate.AutoSize = true;
             this.lblDriverDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDriverDate.Location = new System.Drawing.Point(152, 70);
+            this.lblDriverDate.Location = new System.Drawing.Point(206, 70);
             this.lblDriverDate.Name = "lblDriverDate";
             this.lblDriverDate.Size = new System.Drawing.Size(76, 20);
             this.lblDriverDate.TabIndex = 5;
@@ -1074,9 +1093,9 @@
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label5.Location = new System.Drawing.Point(6, 70);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(108, 20);
+            label5.Size = new System.Drawing.Size(144, 20);
             label5.TabIndex = 4;
-            label5.Text = "Driver version:";
+            label5.Text = "Driver version/date:";
             // 
             // label3
             // 
@@ -1092,7 +1111,7 @@
             // 
             this.lblDeviceVendor.AutoSize = true;
             this.lblDeviceVendor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeviceVendor.Location = new System.Drawing.Point(152, 46);
+            this.lblDeviceVendor.Location = new System.Drawing.Point(206, 46);
             this.lblDeviceVendor.Name = "lblDeviceVendor";
             this.lblDeviceVendor.Size = new System.Drawing.Size(76, 20);
             this.lblDeviceVendor.TabIndex = 3;
@@ -1102,7 +1121,7 @@
             // 
             this.lblDeviceName.AutoSize = true;
             this.lblDeviceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeviceName.Location = new System.Drawing.Point(152, 22);
+            this.lblDeviceName.Location = new System.Drawing.Point(206, 22);
             this.lblDeviceName.Name = "lblDeviceName";
             this.lblDeviceName.Size = new System.Drawing.Size(76, 20);
             this.lblDeviceName.TabIndex = 1;
@@ -1222,6 +1241,8 @@
             // 
             // tabCredits
             // 
+            this.tabCredits.Controls.Add(this.linkLabel13);
+            this.tabCredits.Controls.Add(label34);
             this.tabCredits.Controls.Add(this.linkLabel9);
             this.tabCredits.Controls.Add(this.label23);
             this.tabCredits.Controls.Add(this.linkLabel2);
@@ -1417,20 +1438,48 @@
             this.lblStatus.TabIndex = 4;
             this.lblStatus.Text = "Waiting to start tests";
             // 
-            // linkLabel12
-            // 
-            this.linkLabel12.AutoSize = true;
-            this.linkLabel12.Location = new System.Drawing.Point(6, 98);
-            this.linkLabel12.Name = "linkLabel12";
-            this.linkLabel12.Size = new System.Drawing.Size(248, 20);
-            this.linkLabel12.TabIndex = 14;
-            this.linkLabel12.TabStop = true;
-            this.linkLabel12.Text = "Open PunkBuster logfile (pbcl.log)";
-            this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel12_LinkClicked);
-            // 
             // folderBrowserDialog1
             // 
             this.folderBrowserDialog1.ShowNewFolderButton = false;
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Location = new System.Drawing.Point(6, 170);
+            label33.Name = "label33";
+            label33.Size = new System.Drawing.Size(194, 20);
+            label33.TabIndex = 15;
+            label33.Text = "VideoMemory (dedicated):";
+            // 
+            // lblVideoMemDedicated
+            // 
+            this.lblVideoMemDedicated.AutoSize = true;
+            this.lblVideoMemDedicated.Location = new System.Drawing.Point(206, 170);
+            this.lblVideoMemDedicated.Name = "lblVideoMemDedicated";
+            this.lblVideoMemDedicated.Size = new System.Drawing.Size(76, 20);
+            this.lblVideoMemDedicated.TabIndex = 16;
+            this.lblVideoMemDedicated.Text = "Unknown";
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Location = new System.Drawing.Point(6, 178);
+            label34.Name = "label34";
+            label34.Size = new System.Drawing.Size(410, 18);
+            label34.TabIndex = 6;
+            label34.Text = "the_real_herminator for his/her BackwardReader in a reply to:";
+            // 
+            // linkLabel13
+            // 
+            this.linkLabel13.AutoSize = true;
+            this.linkLabel13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel13.Location = new System.Drawing.Point(6, 196);
+            this.linkLabel13.Name = "linkLabel13";
+            this.linkLabel13.Size = new System.Drawing.Size(383, 17);
+            this.linkLabel13.TabIndex = 7;
+            this.linkLabel13.TabStop = true;
+            this.linkLabel13.Text = "Problem reading a text file from the end to the beginning C#";
+            this.linkLabel13.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel13_LinkClicked);
             // 
             // MainForm
             // 
@@ -1569,6 +1618,8 @@
         private System.Windows.Forms.LinkLabel linkLabel11;
         private System.Windows.Forms.LinkLabel linkLabel12;
         internal System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        internal System.Windows.Forms.Label lblVideoMemDedicated;
+        private System.Windows.Forms.LinkLabel linkLabel13;
     }
 }
 

@@ -9,8 +9,9 @@ namespace BFP4F_Troubleshooting
     {
         #region Fields
 
-        MainForm mainForm = null;
-        bool gameInstalled = false;
+        MainForm _mainForm = null;
+        SystemHelper _systemHelper = null;
+        bool _gameInstalled = false;
 
         const int MIN_PIXELSHADER = 2;
         const int MIN_VIDEOMEMORY = 256;
@@ -24,22 +25,22 @@ namespace BFP4F_Troubleshooting
 
         public MainFormController(Form mainForm)
         {
-            this.mainForm = (MainForm)mainForm;
+            this._mainForm = (MainForm)mainForm;
 
             string path = RegistryHelper.GetGamePath();
             if (String.IsNullOrEmpty(path))
             {
-                this.mainForm.statusGamePath.Text = Properties.Resources.TextNotFound;
-                this.mainForm.statusGamePath.IsLink = false;
-                this.gameInstalled = false;
+                this._mainForm.statusGamePath.Text = Properties.Resources.TextNotFound;
+                this._mainForm.statusGamePath.IsLink = false;
+                this._gameInstalled = false;
             }
             else
             {
-                this.mainForm.statusGamePath.Text = path;
-                this.mainForm.statusGamePath.IsLink = true;
-                this.mainForm.statusGamePath.Click += new EventHandler(delegate(object o, EventArgs e)
+                this._mainForm.statusGamePath.Text = path;
+                this._mainForm.statusGamePath.IsLink = true;
+                this._mainForm.statusGamePath.Click += new EventHandler(delegate(object o, EventArgs e)
                     { System.Diagnostics.Process.Start(path); });
-                this.gameInstalled = true;
+                this._gameInstalled = true;
             }
         }
 
@@ -48,13 +49,18 @@ namespace BFP4F_Troubleshooting
 
         public void RunTests()
         {
+            // create a new SystemHelper object and "destroy" the old one
+            if (this._systemHelper != null)
+                this._systemHelper = null;
+            this._systemHelper = new SystemHelper(this._mainForm);
+
             NetFxTest();
             VCRTTest();
             DirectXTest();
             ConnectionTest();
             HardwareTest();
 
-            this.mainForm.lblStatus.Text = "Finished testing.";
+            this._mainForm.lblStatus.Text = "Finished testing.";
             Application.DoEvents();
         }
 
@@ -63,143 +69,154 @@ namespace BFP4F_Troubleshooting
 
         private void GetVideoDevice()
         {
-            this.mainForm.lblStatus.Text = "Checking Hardware (Video device) ...";
+            this._mainForm.lblStatus.Text = "Checking Hardware (Video device) ...";
             Application.DoEvents();
 
-            this.mainForm.lblDeviceName.Text = HardwareHelper.GetDeviceName();
-            string[] vendor = HardwareHelper.GetDeviceVendor();
+            this._mainForm.lblDeviceName.Text = this._systemHelper.GetDeviceName();
+            string[] vendor = this._systemHelper.GetDeviceVendor();
             if (vendor.Length == 2)
             {
-                this.mainForm.lblDeviceVendor.Text = vendor[0];
-                this.mainForm.lblDriverUrl.Text = vendor[1];
-                this.mainForm.Success++;
+                this._mainForm.lblDeviceVendor.Text = vendor[0];
+                this._mainForm.lblDriverUrl.Text = vendor[1];
+                this._mainForm.Success++;
             }
             else
             {
-                this.mainForm.lblDeviceVendor.Text = Properties.Resources.TextUnknown;
-                this.mainForm.lblDriverUrl.Text = Properties.Resources.TextUnknown;
-                this.mainForm.Errors++;
+                this._mainForm.lblDeviceVendor.Text = Properties.Resources.TextUnknown;
+                this._mainForm.lblDriverUrl.Text = Properties.Resources.TextUnknown;
+                this._mainForm.Errors++;
             }
-            this.mainForm.lblDriverDate.Text = HardwareHelper.GetDriverVersion();
+
+            // Get driver version and date
+            this._mainForm.lblDriverDate.Text = this._systemHelper.GetDriverVersion();
+            DateTime driverDate = this._systemHelper.GetDriverDate();
+            if (driverDate != DateTime.MinValue)
+            {
+                this._mainForm.lblDriverDate.Text += " (" + driverDate.ToShortDateString() + ")";
+            }
 
             // Get max. supported PixelShader version
-            Version version = HardwareHelper.GetPSVersion();
+            Version version = this._systemHelper.GetPSVersion();
             if (version != null)
             {
-                this.mainForm.lblPixelShader.Text = version.ToString();
+                this._mainForm.lblPixelShader.Text = version.ToString();
                 if (version.Major < MIN_PIXELSHADER)
                 {
-                    this.mainForm.picPixelShader.Image = Properties.Resources.IconError;
-                    this.mainForm.picPixelShader.BorderStyle = BorderStyle.None;
-                    this.mainForm.Errors++;
+                    this._mainForm.picPixelShader.Image = Properties.Resources.IconError;
+                    this._mainForm.picPixelShader.BorderStyle = BorderStyle.None;
+                    this._mainForm.Errors++;
                 }
                 else
                 {
-                    this.mainForm.picPixelShader.Image = Properties.Resources.IconSuccess;
-                    this.mainForm.picPixelShader.BorderStyle = BorderStyle.None;
-                    this.mainForm.Success++;
+                    this._mainForm.picPixelShader.Image = Properties.Resources.IconSuccess;
+                    this._mainForm.picPixelShader.BorderStyle = BorderStyle.None;
+                    this._mainForm.Success++;
                 }
             }
             else
             {
-                this.mainForm.lblPixelShader.Text = Properties.Resources.TextUnknown;
-                this.mainForm.picPixelShader.Image = Properties.Resources.IconWarning;
-                this.mainForm.picPixelShader.BorderStyle = BorderStyle.None;
-                this.mainForm.Warnings++;
+                this._mainForm.lblPixelShader.Text = Properties.Resources.TextUnknown;
+                this._mainForm.picPixelShader.Image = Properties.Resources.IconWarning;
+                this._mainForm.picPixelShader.BorderStyle = BorderStyle.None;
+                this._mainForm.Warnings++;
             }
 
             // Get (combined) video memory
-            uint videoMemory = HardwareHelper.GetVideoMemory();
-            this.mainForm.lblVideoMem.Text = videoMemory + " MB";
+            uint videoMemory = this._systemHelper.GetVideoMemory();
+            this._mainForm.lblVideoMem.Text = videoMemory.ToString("#,##0") + " MB";
             if (videoMemory > MIN_VIDEOMEMORY)
             {
-                this.mainForm.picVideoMem.Image = Properties.Resources.IconSuccess;
-                this.mainForm.picVideoMem.BorderStyle = BorderStyle.None;
-                this.mainForm.Success++;
+                this._mainForm.picVideoMem.Image = Properties.Resources.IconSuccess;
+                this._mainForm.picVideoMem.BorderStyle = BorderStyle.None;
+                this._mainForm.Success++;
             }
             else if (videoMemory == MIN_VIDEOMEMORY)
             {
-                this.mainForm.picVideoMem.Image = Properties.Resources.IconWarning;
-                this.mainForm.picVideoMem.BorderStyle = BorderStyle.None;
-                this.mainForm.Warnings++;
+                this._mainForm.picVideoMem.Image = Properties.Resources.IconWarning;
+                this._mainForm.picVideoMem.BorderStyle = BorderStyle.None;
+                this._mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picVideoMem.Image = Properties.Resources.IconError;
-                this.mainForm.picVideoMem.BorderStyle = BorderStyle.None;
-                this.mainForm.Errors++;
+                this._mainForm.picVideoMem.Image = Properties.Resources.IconError;
+                this._mainForm.picVideoMem.BorderStyle = BorderStyle.None;
+                this._mainForm.Errors++;
             }
+
+            // Get (dedicated) video memory
+            videoMemory = this._systemHelper.GetDedicatedVideoMemory();
+            this._mainForm.lblVideoMemDedicated.Text = videoMemory.ToString("#,##0") + " MB";
         }
 
         private void HardwareTest()
         {
-            this.mainForm.lblStatus.Text = "Checking Hardware (CPU + RAM) ...";
+            this._mainForm.lblStatus.Text = "Checking Hardware (CPU + RAM) ...";
             Application.DoEvents();
 
-            string windowsVersion = HardwareHelper.GetWindowsVersion();
-            this.mainForm.lblOperatingSystem.Text = windowsVersion;
+            string windowsVersion = this._systemHelper.GetWindowsVersion();
+            this._mainForm.lblOperatingSystem.Text = windowsVersion;
 
-            uint cpuSpeed = HardwareHelper.GetCPUSpeed();
+            uint cpuSpeed = this._systemHelper.GetCPUSpeed();
             if (cpuSpeed > 0)
             {
-                this.mainForm.lblCPU.Text = cpuSpeed + " MHz";
-                uint logicalCpus = HardwareHelper.GetLogicalCPUCount();
+                this._mainForm.lblCPU.Text = cpuSpeed.ToString("#,##0") + " MHz";
+                uint logicalCpus = this._systemHelper.GetLogicalCPUCount();
                 if (logicalCpus > 0)
                 {
-                    this.mainForm.lblCPU.Text += " (" + logicalCpus + " cores)";
+                    this._mainForm.lblCPU.Text += " (" + logicalCpus + " cores)";
                 }
 
                 if ((cpuSpeed <= (MIN_CPU * 1.25)) && (logicalCpus <= 1))
                 {
-                    this.mainForm.picCPU.Image = Properties.Resources.IconWarning;
-                    this.mainForm.picCPU.BorderStyle = BorderStyle.None;
-                    this.mainForm.Warnings++;
+                    this._mainForm.picCPU.Image = Properties.Resources.IconWarning;
+                    this._mainForm.picCPU.BorderStyle = BorderStyle.None;
+                    this._mainForm.Warnings++;
                 }
                 else
                 {
-                    this.mainForm.picCPU.Image = Properties.Resources.IconSuccess;
-                    this.mainForm.picCPU.BorderStyle = BorderStyle.None;
-                    this.mainForm.Success++;
+                    this._mainForm.picCPU.Image = Properties.Resources.IconSuccess;
+                    this._mainForm.picCPU.BorderStyle = BorderStyle.None;
+                    this._mainForm.Success++;
                 }
             }
             else
             {
-                this.mainForm.picCPU.Image = Properties.Resources.IconError;
-                this.mainForm.picCPU.BorderStyle = BorderStyle.None;
-                this.mainForm.lblCPU.Text = Properties.Resources.TextError;
-                this.mainForm.Errors++;
+                this._mainForm.picCPU.Image = Properties.Resources.IconError;
+                this._mainForm.picCPU.BorderStyle = BorderStyle.None;
+                this._mainForm.lblCPU.Text = Properties.Resources.TextError;
+                this._mainForm.Errors++;
             }
-        
-            double memory = HardwareHelper.GetMemory();
+
+            double memory = this._systemHelper.GetMemory();
             if (memory > 0)
             {
-                this.mainForm.lblRAM.Text = memory.ToString("#,##0.00") + " MB";
+                this._mainForm.lblRAM.Text = memory.ToString("#,##0.00") + " MB";
 
                 if (memory < MIN_RAM)
                 {
-                    this.mainForm.picRAM.Image = Properties.Resources.IconError;
-                    this.mainForm.picRAM.BorderStyle = BorderStyle.None;
-                    this.mainForm.Errors++;
+                    this._mainForm.picRAM.Image = Properties.Resources.IconError;
+                    this._mainForm.picRAM.BorderStyle = BorderStyle.None;
+                    this._mainForm.Errors++;
                 }
                 else if ((memory >= MIN_RAM) && (memory <= (MIN_RAM * 2)))
                 {
-                    this.mainForm.picRAM.Image = Properties.Resources.IconWarning;
-                    this.mainForm.picRAM.BorderStyle = BorderStyle.None;
-                    this.mainForm.Warnings++;
+                    this._mainForm.picRAM.Image = Properties.Resources.IconWarning;
+                    this._mainForm.picRAM.BorderStyle = BorderStyle.None;
+                    this._mainForm.Warnings++;
                 }
                 else
                 {
-                    this.mainForm.picRAM.Image = Properties.Resources.IconSuccess;
-                    this.mainForm.picRAM.BorderStyle = BorderStyle.None;
-                    this.mainForm.Success++;
+                    this._mainForm.picRAM.Image = Properties.Resources.IconSuccess;
+                    this._mainForm.picRAM.BorderStyle = BorderStyle.None;
+                    this._mainForm.Success++;
                 }
             }
             else
             {
-                this.mainForm.picRAM.Image = Properties.Resources.IconError;
-                this.mainForm.picRAM.BorderStyle = BorderStyle.None;
-                this.mainForm.lblRAM.Text = Properties.Resources.TextError;
-                this.mainForm.Errors++;
+                this._mainForm.picRAM.Image = Properties.Resources.IconError;
+                this._mainForm.picRAM.BorderStyle = BorderStyle.None;
+                this._mainForm.lblRAM.Text = Properties.Resources.TextError;
+                this._mainForm.Errors++;
             }
         }
 
@@ -216,7 +233,7 @@ namespace BFP4F_Troubleshooting
 
         private void PingServers()
         {
-            this.mainForm.lblStatus.Text = "Checking Connection (pinging servers) ...";
+            this._mainForm.lblStatus.Text = "Checking Connection (pinging servers) ...";
             Application.DoEvents();
 
             long replyTime = 0;
@@ -226,58 +243,58 @@ namespace BFP4F_Troubleshooting
                 replyTime = NetworkHelper.PingServer(NetworkHelper.servers[i]);
                 if (replyTime < 0)
                 {
-                    this.mainForm.ServerIcons[i].Image = Properties.Resources.IconError;
-                    this.mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
-                    this.mainForm.ServerLabels[i].Text = Properties.Resources.TextError;
-                    this.mainForm.Errors++;
+                    this._mainForm.ServerIcons[i].Image = Properties.Resources.IconError;
+                    this._mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
+                    this._mainForm.ServerLabels[i].Text = Properties.Resources.TextError;
+                    this._mainForm.Errors++;
                 }
                 else if (replyTime == 0)
                 {
-                    this.mainForm.ServerIcons[i].Image = Properties.Resources.IconWarning;
-                    this.mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
-                    this.mainForm.ServerLabels[i].Text = Properties.Resources.TextTimeOut;
-                    this.mainForm.Warnings++;
+                    this._mainForm.ServerIcons[i].Image = Properties.Resources.IconWarning;
+                    this._mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
+                    this._mainForm.ServerLabels[i].Text = Properties.Resources.TextTimeOut;
+                    this._mainForm.Warnings++;
                 }
                 else
                 {
-                    this.mainForm.ServerIcons[i].Image = Properties.Resources.IconSuccess;
-                    this.mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
-                    this.mainForm.ServerLabels[i].Text = replyTime + " ms";
-                    this.mainForm.Success++;
+                    this._mainForm.ServerIcons[i].Image = Properties.Resources.IconSuccess;
+                    this._mainForm.ServerIcons[i].BorderStyle = BorderStyle.None;
+                    this._mainForm.ServerLabels[i].Text = replyTime + " ms";
+                    this._mainForm.Success++;
                 }
             }
         }
 
         private void CheckHostsFile()
         {
-            this.mainForm.lblStatus.Text = "Checking Connection (hosts file) ...";
+            this._mainForm.lblStatus.Text = "Checking Connection (hosts file) ...";
             Application.DoEvents();
 
             int hosts = FileSystemHelper.CheckHostsFile();
             if (hosts == 0)
             {
-                this.mainForm.picHosts.Image = Properties.Resources.IconSuccess;
-                this.mainForm.picHosts.BorderStyle = BorderStyle.None;
-                this.mainForm.lblHosts.Visible = false;
-                this.mainForm.linkHosts.Enabled = true;
-                this.mainForm.Success++;
+                this._mainForm.picHosts.Image = Properties.Resources.IconSuccess;
+                this._mainForm.picHosts.BorderStyle = BorderStyle.None;
+                this._mainForm.lblHosts.Visible = false;
+                this._mainForm.linkHosts.Enabled = true;
+                this._mainForm.Success++;
             }
             else if (hosts == -1)
             {
-                this.mainForm.picHosts.Image = Properties.Resources.IconWarning;
-                this.mainForm.picHosts.BorderStyle = BorderStyle.None;
-                this.mainForm.lblHosts.Text = "Could not find hosts file";
-                this.mainForm.linkHosts.Enabled = false;
-                this.mainForm.Warnings++;
+                this._mainForm.picHosts.Image = Properties.Resources.IconWarning;
+                this._mainForm.picHosts.BorderStyle = BorderStyle.None;
+                this._mainForm.lblHosts.Text = "Could not find hosts file";
+                this._mainForm.linkHosts.Enabled = false;
+                this._mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picHosts.Image = Properties.Resources.IconWarning;
-                this.mainForm.picHosts.BorderStyle = BorderStyle.None;
-                this.mainForm.lblHosts.Text = hosts + " suspicious entries found";
-                this.mainForm.lblHosts.Visible = true;
-                this.mainForm.linkHosts.Enabled = true;
-                this.mainForm.Warnings++;
+                this._mainForm.picHosts.Image = Properties.Resources.IconWarning;
+                this._mainForm.picHosts.BorderStyle = BorderStyle.None;
+                this._mainForm.lblHosts.Text = hosts + " suspicious entries found";
+                this._mainForm.lblHosts.Visible = true;
+                this._mainForm.linkHosts.Enabled = true;
+                this._mainForm.Warnings++;
             }
         }
 
@@ -288,35 +305,29 @@ namespace BFP4F_Troubleshooting
 
         void DirectXTest()
         {
-            this.mainForm.lblStatus.Text = "Checking Prerequisites (DirectX) ...";
+            this._mainForm.lblStatus.Text = "Checking Prerequisites (DirectX) ...";
             Application.DoEvents();
 
-            try
+            if (this._systemHelper.DxInstalled == false)
             {
-                HardwareHelper.Initialize(this.mainForm);
-            }
-            catch { }
-            
-            if (Program.dxFailed)
-            {
-                this.mainForm.picDX.Image = Properties.Resources.IconError;
-                this.mainForm.picDX.BorderStyle = BorderStyle.None;
-                this.mainForm.lblDriverUrl.Enabled = false;
-                this.mainForm.Errors++;
-                return;
+                this._mainForm.picDX.Image = Properties.Resources.IconError;
+                this._mainForm.picDX.BorderStyle = BorderStyle.None;
+                this._mainForm.lblDriverUrl.Enabled = false;
+                this._mainForm.Errors++;
+                //return;
             }
 
-            this.mainForm.picDX.Image = Properties.Resources.IconSuccess;
-            this.mainForm.picDX.BorderStyle = BorderStyle.None;
-            this.mainForm.lblDriverUrl.Enabled = true;
-            this.mainForm.Success++;
+            this._mainForm.picDX.Image = Properties.Resources.IconSuccess;
+            this._mainForm.picDX.BorderStyle = BorderStyle.None;
+            this._mainForm.lblDriverUrl.Enabled = true;
+            this._mainForm.Success++;
 
             GetVideoDevice();
         }
 
         void NetFxTest()
         {
-            this.mainForm.lblStatus.Text = "Checking Prerequisites (.NET Frameworks) ...";
+            this._mainForm.lblStatus.Text = "Checking Prerequisites (.NET Frameworks) ...";
             Application.DoEvents();
 
             bool netfx35 = false;
@@ -329,48 +340,48 @@ namespace BFP4F_Troubleshooting
 
             if (netfx35 && netfx35sp1)
             {
-                this.mainForm.picNet35.Image = Properties.Resources.IconSuccess;
-                this.mainForm.picNet35.BorderStyle = BorderStyle.None;
-                this.mainForm.lblNetFx35sp1.Visible = false;
-                this.mainForm.Success++;
+                this._mainForm.picNet35.Image = Properties.Resources.IconSuccess;
+                this._mainForm.picNet35.BorderStyle = BorderStyle.None;
+                this._mainForm.lblNetFx35sp1.Visible = false;
+                this._mainForm.Success++;
             }
             else if (netfx35)
             {
-                this.mainForm.picNet35.Image = Properties.Resources.IconWarning;
-                this.mainForm.picNet35.BorderStyle = BorderStyle.None;
-                this.mainForm.lblNetFx35sp1.Text = Properties.Resources.TextMissingSP1;
-                this.mainForm.lblNetFx35sp1.Visible = true;
-                this.mainForm.Warnings++;
+                this._mainForm.picNet35.Image = Properties.Resources.IconWarning;
+                this._mainForm.picNet35.BorderStyle = BorderStyle.None;
+                this._mainForm.lblNetFx35sp1.Text = Properties.Resources.TextMissingSP1;
+                this._mainForm.lblNetFx35sp1.Visible = true;
+                this._mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picNet35.Image = Properties.Resources.IconError;
-                this.mainForm.picNet35.BorderStyle = BorderStyle.None;
-                this.mainForm.lblNetFx35sp1.Text = Properties.Resources.TextMissing;
-                this.mainForm.lblNetFx35sp1.Visible = true;
-                this.mainForm.Errors++;
+                this._mainForm.picNet35.Image = Properties.Resources.IconError;
+                this._mainForm.picNet35.BorderStyle = BorderStyle.None;
+                this._mainForm.lblNetFx35sp1.Text = Properties.Resources.TextMissing;
+                this._mainForm.lblNetFx35sp1.Visible = true;
+                this._mainForm.Errors++;
             }
 
             if (netfx40)
             {
-                this.mainForm.picNet40.Image = Properties.Resources.IconSuccess;
-                this.mainForm.picNet40.BorderStyle = BorderStyle.None;
-                this.mainForm.lblNetFx40.Visible = false;
-                this.mainForm.Success++;
+                this._mainForm.picNet40.Image = Properties.Resources.IconSuccess;
+                this._mainForm.picNet40.BorderStyle = BorderStyle.None;
+                this._mainForm.lblNetFx40.Visible = false;
+                this._mainForm.Success++;
             }
             else
             {
-                this.mainForm.picNet40.Image = Properties.Resources.IconError;
-                this.mainForm.picNet40.BorderStyle = BorderStyle.None;
-                this.mainForm.lblNetFx40.Text = Properties.Resources.TextMissing;
-                this.mainForm.lblNetFx40.Visible = true;
-                this.mainForm.Errors++;
+                this._mainForm.picNet40.Image = Properties.Resources.IconError;
+                this._mainForm.picNet40.BorderStyle = BorderStyle.None;
+                this._mainForm.lblNetFx40.Text = Properties.Resources.TextMissing;
+                this._mainForm.lblNetFx40.Visible = true;
+                this._mainForm.Errors++;
             }
         }
 
         void VCRTTest()
         {
-            this.mainForm.lblStatus.Text = "Checking Prerequisites (Visual C++ Runtimes) ...";
+            this._mainForm.lblStatus.Text = "Checking Prerequisites (Visual C++ Runtimes) ...";
             Application.DoEvents();
 
             bool vcrt2005 = false;
@@ -385,50 +396,50 @@ namespace BFP4F_Troubleshooting
 
             if (vcrt2005 && vcrt2005sp1)
             {
-                this.mainForm.picVC2005.Image = Properties.Resources.IconSuccess;
-                this.mainForm.picVC2005.BorderStyle = BorderStyle.None;
-                this.mainForm.lblVC2005sp1.Visible = false;
-                this.mainForm.Success++;
+                this._mainForm.picVC2005.Image = Properties.Resources.IconSuccess;
+                this._mainForm.picVC2005.BorderStyle = BorderStyle.None;
+                this._mainForm.lblVC2005sp1.Visible = false;
+                this._mainForm.Success++;
             }
             else if (vcrt2005)
             {
-                this.mainForm.picVC2005.Image = Properties.Resources.IconWarning;
-                this.mainForm.picVC2005.BorderStyle = BorderStyle.None;
-                this.mainForm.lblVC2005sp1.Text = Properties.Resources.TextMissingSP1;
-                this.mainForm.lblVC2005sp1.Visible = true;
-                this.mainForm.Warnings++;
+                this._mainForm.picVC2005.Image = Properties.Resources.IconWarning;
+                this._mainForm.picVC2005.BorderStyle = BorderStyle.None;
+                this._mainForm.lblVC2005sp1.Text = Properties.Resources.TextMissingSP1;
+                this._mainForm.lblVC2005sp1.Visible = true;
+                this._mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picVC2005.Image = Properties.Resources.IconError;
-                this.mainForm.picVC2005.BorderStyle = BorderStyle.None;
-                this.mainForm.lblVC2005sp1.Text = Properties.Resources.TextMissing;
-                this.mainForm.lblVC2005sp1.Visible = true;
-                this.mainForm.Errors++;
+                this._mainForm.picVC2005.Image = Properties.Resources.IconError;
+                this._mainForm.picVC2005.BorderStyle = BorderStyle.None;
+                this._mainForm.lblVC2005sp1.Text = Properties.Resources.TextMissing;
+                this._mainForm.lblVC2005sp1.Visible = true;
+                this._mainForm.Errors++;
             }
 
             if (vcrt2008 && vcrt2008sp1)
             {
-                this.mainForm.picVC2008.Image = Properties.Resources.IconSuccess;
-                this.mainForm.picVC2008.BorderStyle = BorderStyle.None;
-                this.mainForm.lblVC2008sp1.Visible = false;
-                this.mainForm.Success++;
+                this._mainForm.picVC2008.Image = Properties.Resources.IconSuccess;
+                this._mainForm.picVC2008.BorderStyle = BorderStyle.None;
+                this._mainForm.lblVC2008sp1.Visible = false;
+                this._mainForm.Success++;
             }
             else if (vcrt2008)
             {
-                this.mainForm.picVC2008.Image = Properties.Resources.IconWarning;
-                this.mainForm.picVC2008.BorderStyle = BorderStyle.None;
-                this.mainForm.lblVC2008sp1.Text = Properties.Resources.TextMissingSP1;
-                this.mainForm.lblVC2008sp1.Visible = true;
-                this.mainForm.Warnings++;
+                this._mainForm.picVC2008.Image = Properties.Resources.IconWarning;
+                this._mainForm.picVC2008.BorderStyle = BorderStyle.None;
+                this._mainForm.lblVC2008sp1.Text = Properties.Resources.TextMissingSP1;
+                this._mainForm.lblVC2008sp1.Visible = true;
+                this._mainForm.Warnings++;
             }
             else
             {
-                this.mainForm.picVC2008.Image = Properties.Resources.IconError;
-                this.mainForm.picVC2008.BorderStyle = BorderStyle.None;
-                this.mainForm.lblVC2008sp1.Text = Properties.Resources.TextMissing;
-                this.mainForm.lblVC2008sp1.Visible = true;
-                this.mainForm.Errors++;
+                this._mainForm.picVC2008.Image = Properties.Resources.IconError;
+                this._mainForm.picVC2008.BorderStyle = BorderStyle.None;
+                this._mainForm.lblVC2008sp1.Text = Properties.Resources.TextMissing;
+                this._mainForm.lblVC2008sp1.Visible = true;
+                this._mainForm.Errors++;
             }
         }
 
@@ -441,38 +452,38 @@ namespace BFP4F_Troubleshooting
         {
             string path = "";
 
-            if (this.gameInstalled == true)
+            if (this._gameInstalled == true)
             {
-                path = this.mainForm.statusGamePath.Text;
+                path = this._mainForm.statusGamePath.Text;
                 if (path.EndsWith(@"\") == false)
                     path += @"\";
                 path += "pbsvc_p4f.exe";
             }
             
-            if ((System.IO.File.Exists(path) == false) || (this.gameInstalled == false))
+            if ((System.IO.File.Exists(path) == false) || (this._gameInstalled == false))
             {
-                this.mainForm.lblStatus.Text = "Downloading \"pbsvc.exe\" ...";
+                this._mainForm.lblStatus.Text = "Downloading \"pbsvc.exe\" ...";
 
                 path = Environment.GetEnvironmentVariable("TEMP");
                 if (path.EndsWith(@"\") == false)
                     path += @"\";
                 path += "pbsvc.exe";
 
-                this.mainForm.lblStatus.Text = "Finished downloading.";
+                this._mainForm.lblStatus.Text = "Finished downloading.";
 
                 if (NetworkHelper.DownloadPbSvc(path) == false)
                     return;
             }
 
-            this.mainForm.lblStatus.Text = "Starting pbsvc.exe ...";
+            this._mainForm.lblStatus.Text = "Starting pbsvc.exe ...";
             System.Diagnostics.Process.Start(path);
-            this.mainForm.lblStatus.Text = "Finished starting \"pbsvc.exe\" ...";
+            this._mainForm.lblStatus.Text = "Finished starting \"pbsvc.exe\" ...";
         }
 
         public void OpenPbcl()
         {
             string path = "";
-            if (this.gameInstalled)
+            if (this._gameInstalled)
             {
                 path = RegistryHelper.GetGamePath();
             }
@@ -485,9 +496,9 @@ namespace BFP4F_Troubleshooting
                 if (result == DialogResult.No)
                     return;
 
-                result = this.mainForm.folderBrowserDialog1.ShowDialog(this.mainForm);
+                result = this._mainForm.folderBrowserDialog1.ShowDialog(this._mainForm);
                 if (result == DialogResult.OK)
-                    path = this.mainForm.folderBrowserDialog1.SelectedPath;
+                    path = this._mainForm.folderBrowserDialog1.SelectedPath;
                 else
                     return;
             }

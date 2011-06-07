@@ -111,6 +111,7 @@ namespace BFP4F_Troubleshooting
             this._controller.RunTests();
 
             this.Cursor = currentCursor;
+            this.btnStart.Enabled = true;
         }
 
 
@@ -205,6 +206,11 @@ namespace BFP4F_Troubleshooting
         private void linkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this._controller.OpenPbcl();
+        }
+
+        private void linkLabel13_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://social.msdn.microsoft.com/forums/en-US/csharpgeneral/thread/9acdde1a-03cd-4018-9f87-6e201d8f5d09#3cd342b9-38f1-4a7b-8aca-af301fc7a868");
         }
 
         #endregion
